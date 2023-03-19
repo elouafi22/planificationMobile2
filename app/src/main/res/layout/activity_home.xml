@@ -34,7 +34,7 @@
             android:id="@+id/monplaging"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/baseline_perm_contact_calendar_24">
+            android:src="@drawable/baseline_perm_contact_calendar_24"/>
 
         <ImageView
             android:id="@+id/nouveau"

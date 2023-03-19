@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
 
         // pour le test de connexion a la base de donne
+        /*
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(threadPolicy);
+        StrictMode.setThreadPolicy(threadPolicy);*/
 
         //test connection user and password
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     Session.connexion();
                     Toast.makeText(MainActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
                     Intent nouveau = new Intent(getApplicationContext(),home.class);
-                    startActivity(nouveau);
+                    startActivity(nouveau)
                     finish();
 
                 }
