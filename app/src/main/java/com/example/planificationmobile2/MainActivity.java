@@ -41,19 +41,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /*
-                baseDeDonne Session = new baseDeDonne(username.getText().toString(),password.getText().toString());
+                baseDeDonne Session = baseDeDonne.getInstance();
                 try{
-                    Session.connexion();
+                    Session.connexion(username.getText().toString(),password.getText().toString());
                     Toast.makeText(MainActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
                     Intent nouveau = new Intent(getApplicationContext(),home.class);
-                    startActivity(nouveau)
+                    startActivity(nouveau);
                     finish();
 
                 }
                 catch(ClassNotFoundException | SQLException e) {
                     Toast.makeText(MainActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
-                }*/
+                }
 
+                 */
                 ////////////// se code est temmporairement tanque la base de donne ne travaille pas
                 Intent nouveau = new Intent(getApplicationContext(),home.class);
                 startActivity(nouveau);

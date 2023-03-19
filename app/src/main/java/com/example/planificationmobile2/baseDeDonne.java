@@ -8,25 +8,28 @@ import java.sql.Statement;
 
 public class baseDeDonne {
     // class de base de donne oracle utilisé JBDC
+    private static baseDeDonne connection=null;
     private final static String url = "jdbc:oracle:thin:@localhost:1521/XEPDB1";
-    private String user;
-    private String password;
-    private Connection conn;
+    private static Connection conn;
 
-    private Statement Session; // for file session conection sql oracle
+    private static Statement Session; // for file session conection sql oracle
 
     // constructeur
-    public baseDeDonne(String user , String password){
-        this.user = user;
-        this.password = password;
+    public baseDeDonne(){
     }
 
+    /// cette methode permet de recuperer l'objet courant dans n'import quelle activite
+    public  static baseDeDonne getInstance(){
+        if(connection==null)
+            connection =new baseDeDonne();
+        return  connection;
+    }
     // methode de connexion
-    public void connexion() throws ClassNotFoundException, SQLException {
+    public void connexion(String user, String password) throws ClassNotFoundException, SQLException {
         // code de connexion
 
             //Class.forName("oracle.jdbc.driver.OracleDriver");
-             this.conn = DriverManager.getConnection(url, this.user, this.password);
+             this.conn = DriverManager.getConnection(url,user,password);
             Session = conn.createStatement(); // on stock la session dans la variable Session
 
 
@@ -52,9 +55,7 @@ public class baseDeDonne {
         // code de deconnexion
         this.conn.close();
 
-        this.password=null;
-        this.user=null;
-        this.Session=null;
+        Session=null;
 
     }
 }
