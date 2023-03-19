@@ -1,6 +1,8 @@
 package com.example.planificationmobile2;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.StrictMode;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,15 +39,24 @@ public class MainActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*
                 baseDeDonne Session = new baseDeDonne(username.getText().toString(),password.getText().toString());
                 try{
                     Session.connexion();
                     Toast.makeText(MainActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                    Intent nouveau = new Intent(getApplicationContext(),home.class);
+                    startActivity(nouveau);
+                    finish();
+
                 }
                 catch(ClassNotFoundException | SQLException e) {
                     Toast.makeText(MainActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
-                }
+                }*/
+
+                ////////////// se code est temmporairement tanque la base de donne ne travaille pas
+                Intent nouveau = new Intent(getApplicationContext(),home.class);
+                startActivity(nouveau);
+                finish();
             }
 
         });

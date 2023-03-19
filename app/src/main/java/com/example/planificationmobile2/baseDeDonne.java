@@ -11,6 +11,7 @@ public class baseDeDonne {
     private final static String url = "jdbc:oracle:thin:@localhost:1521/XEPDB1";
     private String user;
     private String password;
+    private Connection conn;
 
     private Statement Session; // for file session conection sql oracle
 
@@ -25,7 +26,7 @@ public class baseDeDonne {
         // code de connexion
 
             //Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection conn = DriverManager.getConnection(url, this.user, this.password);
+             this.conn = DriverManager.getConnection(url, this.user, this.password);
             Session = conn.createStatement(); // on stock la session dans la variable Session
 
 
@@ -41,14 +42,19 @@ public class baseDeDonne {
         }
 
         System.out.println(stringBuffer.toString());
+        rs.close();
 
 
     }
 
     // methode de deconnexion
-    public void deconnexion() {
+    public void deconnexion() throws SQLException {
         // code de deconnexion
+        this.conn.close();
 
+        this.password=null;
+        this.user=null;
+        this.Session=null;
 
     }
 }
