@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,9 +15,9 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="GPM"
+        android:text="@string/gpm"
         android:textColor="@color/white"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:textStyle="bold" />
 
     <EditText
@@ -27,13 +26,16 @@
         android:id="@+id/username"
         android:layout_below="@id/title"
         android:background="#30ffffff"
-        android:hint="Utilisateur"
+        android:hint="@string/utilisateur"
         android:textColorHint="@color/white"
+
         android:textColor="@color/white"
         android:layout_margin="10dp"
         android:padding="20dp"
-        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-        android:drawablePadding="20dp"/>
+        android:drawableStart="@drawable/ic_baseline_person_outline_24"
+        android:drawablePadding="20dp"
+        android:autofillHints=""
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:layout_width="match_parent"
@@ -41,14 +43,15 @@
         android:id="@+id/password"
         android:layout_below="@id/username"
         android:background="#30ffffff"
-        android:hint="Mote de passe"
+        android:hint="@string/mote_de_passe"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"
         android:padding="20dp"
-        android:drawableLeft="@drawable/baseline_key_24"
+        android:drawableStart="@drawable/baseline_key_24"
         android:drawablePadding="20dp"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:autofillHints="" />
 
 
     <TextView
@@ -56,7 +59,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/forgotpass"
         android:layout_below="@id/loginbtn"
-        android:text="Oblier votre mot de passe ?"
+        android:text="@string/oblier_votre_mot_de_passe"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"/>
@@ -66,7 +69,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/others"
         android:layout_above="@id/socialicons"
-        android:text="Contactez-nous"
+        android:text="@string/contactez_nous"
         android:layout_centerHorizontal="true"/>
 
 
@@ -82,16 +85,19 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
+            android:contentDescription="@string/google"
             android:src="@drawable/google"/>
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
+            android:contentDescription="@string/facebook"
             android:src="@drawable/fb"/>
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
+            android:contentDescription="@string/twitter"
             android:src="@drawable/twitter"/>
 
     </LinearLayout>
@@ -108,7 +114,7 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
-        android:text="LOGIN" />
+        android:text="@string/login" />
 
 
 </RelativeLayout>
