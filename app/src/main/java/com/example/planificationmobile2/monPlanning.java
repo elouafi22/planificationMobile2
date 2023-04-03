@@ -1,74 +1,39 @@
 package com.example.planificationmobile2;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.planificationmobile2.traitementPourProjet.DataRecievedListener;
+import com.example.planificationmobile2.traitementPourProjet.afficherProjet;
+import com.example.planificationmobile2.traitementPourProjet.DataRecievedListener;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class monPlanning extends AppCompatActivity {
-
+public class monPlanning extends AppCompatActivity implements DataRecievedListener {
+    private afficherProjet lesprojet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon_planning);
 
+        String url = "http://192.168.1.105:5000//afficherProjet";
+        //  user u1 = user.gestInstance();
 
-         String url = "http://20.55.44.15:5000/materiel1";
-
-        TextView tv = (TextView) findViewById(R.id.textView);
-        JSONObject postData= new JSONObject();
-        user u1 = user.gestInstance();
-        try {
-            postData.put("username",u1.getNom());
-            postData.put("password",u1.getPassword());
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-
-        JsonObjectRequest jonrequest =new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String id = response.getString("id");
-                    String nom = response.getString("nom");
-                    String prenom =response.getString("prenom");
-                    tv.setText(id+"::"+nom+"::"+prenom);
-                } catch (JSONException e) {
-                    tv.setText(e.getMessage());
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Afficher un message d'erreur à l'utilisateur
-                System.out.println(error.getMessage());
-                Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_LONG).show();
-
-            }
-        });
+        lesprojet = new afficherProjet(this);
+        lesprojet.RecuperLesDonneJson(this,url);
 
 
+    }
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jonrequest);
+    @Override
+    public void onDataRecieved() {
 
+        ListView listprojet = findViewById(R.id.projet);
+        lesprojet.afficherEnsembleProjet(this, listprojet);
 
     }
 
@@ -112,7 +77,9 @@ public class monPlanning extends AppCompatActivity {
         }
     }
 
+
 }
+
 
 /*
     JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
