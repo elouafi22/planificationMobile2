@@ -19,7 +19,8 @@ import org.json.JSONObject;
 public class connection {
     //private static String url = "http://100.71.33.221:5000/authentification";
 
-    private static String url = "http://100.71.33.221:5000/authentification";
+   // private static String url = "http://100.71.33.221:5000/authentification";
+   private static String url ="http://20.55.44.15:5000/";
 
     public static void get_connection(Context context, String username ,String password){
         JSONObject postData = new JSONObject();
