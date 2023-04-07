@@ -20,8 +20,8 @@ public class monPlanning extends AppCompatActivity implements DataRecievedListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon_planning);
 
-       // String url = "http://192.168.1.105:5000//afficherProjet";
-        String url ="http://20.55.44.15:5000/projet";
+        String url = "http://192.168.1.105:5000//afficherProjet";
+       // String url ="http://20.55.44.15:5000/projet";
         //  user u1 = user.gestInstance();
 
         lesprojet = new afficherProjet(this);

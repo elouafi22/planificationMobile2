@@ -21,4 +21,9 @@
     <string name="item_projet">nom projet</string>
     <string name="statutprojet">statue projet</string>
     <string name="datefinprojet">date fin</string>
+
+    <string-array name="choisirgrapht">
+        <item>difference</item>
+        <item>score</item>
+    </string-array>
 </resources>
