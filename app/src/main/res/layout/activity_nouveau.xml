@@ -39,21 +39,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Description de projet -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ProjetDescription"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description du projet"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/black"
-            app:hintTextColor="@color/black"
-            app:startIconDrawable="@drawable/description_projet"
-            app:startIconTint="#2C9FC2" >
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ProjetDescription"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description du projet"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black"
+        app:hintTextColor="@color/black"
+        app:startIconDrawable="@drawable/description_projet"
+        app:startIconTint="#2C9FC2" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -61,6 +61,8 @@
             android:hint="Description du projet"
             android:inputType="text"
             android:textColorHint="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Date de debut -->
         <TextView
@@ -104,7 +106,7 @@
             />
 
 
-        </com.google.android.material.textfield.TextInputLayout>
+
 
 
     </LinearLayout>
