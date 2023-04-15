@@ -44,6 +44,8 @@ public class nouveau extends AppCompatActivity {
 
 
     }
+    /*
+    // i don't need it i just need form of cree projet :
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -84,6 +86,7 @@ public class nouveau extends AppCompatActivity {
         }
     }
 
+    */
     /**
      * validation du form pour creer un nouveau projet
      */
