@@ -1,6 +1,7 @@
 package com.example.planificationmobile2.traitementPourProjet;
 
 import android.content.Context;
+import android.os.Build;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
@@ -16,7 +17,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class afficherProjet {
     private  ArrayList<projet> ensembleProjet;
@@ -58,7 +63,10 @@ public class afficherProjet {
                     try {
                         JSONObject obj = response.getJSONObject(i);
                         //  ensembleProjet.add(new projet(obj.getString("idprojet"),obj.getString("nomprojet"),obj.getString("description"),obj.getString("dateDebut"),obj.getString("chefProjet"),obj.getString("etatProjet")));
-                        ensembleProjet.add(new projet(obj.getString("IDPROJ"),obj.getString("NOMPROJ"),obj.getString("DATEDEB"),obj.getString("DESCRIPTION"),obj.getString("PN"),obj.getString("ETATPROJ")));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
+                            ensembleProjet.add(new projet(obj.getString("IDPROJ"),obj.getString("NOMPROJ"),obj.getString("DESCRIPTION"),LocalDateTime.parse(obj.getString("DATEDEB"),formatter),LocalDateTime.parse(obj.getString("DateFin"),formatter),obj.getString("PN"),obj.getString("ETATPROJ")));
+                        }
                     }catch (JSONException e){
                         e.printStackTrace();
                     }

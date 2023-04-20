@@ -22,6 +22,7 @@ import com.example.planificationmobile2.traitementpourGraph.graph;
 
 public class analyser extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static String url="http://192.168.1.105:5000/afficherGraph1";
+    //private static String url="http://20.55.44.15:8000/afficherGraph1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
