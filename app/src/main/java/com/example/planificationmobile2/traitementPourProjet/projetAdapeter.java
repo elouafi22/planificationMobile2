@@ -53,7 +53,6 @@ public class projetAdapeter extends BaseAdapter {
         String  dateFin = projetcourant.dureRestant();
 
         /// injecter les informations dans le textview
-
         TextView nomprojet= view.findViewById(R.id.nomprojet);
         nomprojet.setText(nom);
 
@@ -70,6 +69,18 @@ public class projetAdapeter extends BaseAdapter {
             staturprojet.setBackgroundColor(Color.RED);
         }
 
+        /////// pour les dates
+        TextView jourdb =view.findViewById(R.id.dayprojet);
+        jourdb.setText(projetcourant.recuperJourDatedb());
+
+        TextView jour2 =view.findViewById(R.id.daynbrprojet);
+        jour2.setText(projetcourant.recuperJourDatedb2());
+
+        TextView mois =view.findViewById(R.id.month);
+        mois.setText(projetcourant.recuperMoiDatedb());
+
+        TextView anne =view.findViewById(R.id.datefinProjet);
+        anne.setText(projetcourant.recuperAnneeDatedb());
 
 
 
@@ -78,19 +89,6 @@ public class projetAdapeter extends BaseAdapter {
         TextView itemDescription =view.findViewById(R.id.description);
         itemDescription.setText(description);
 
-
-        ///////////////// modification de la couleur de la date fin selon la valeur actuelle
-      /*
-        TextView datefinprojet =view.findViewById(R.id.datefinProjet);
-        datefinprojet.setText(dateFin);
-
-        if(dateFin.equals("Aujourd'hui"))
-            datefinprojet.setBackgroundColor(Color.parseColor("#FFA500"));
-        else if (dateFin.contains("+")) {
-            datefinprojet.setBackgroundColor(Color.GREEN);
-        } else  {
-            datefinprojet.setBackgroundColor(Color.RED);
-        }*/
 
         // ImageView informationprojet = view.findViewById(R.id.informationprojet);
         ImageView planningprojet = view.findViewById(R.id.planningprojet);
@@ -108,7 +106,7 @@ public class projetAdapeter extends BaseAdapter {
         planningprojet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Affichage planning projet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,  projetcourant.recuperJourDatedb()+" "+projetcourant.recuperMoiDatedb()+" "+projetcourant.recuperAnneeDatedb()+" "+projetcourant.recuperJourDatedb2(), Toast.LENGTH_SHORT).show();
             }
         });
 

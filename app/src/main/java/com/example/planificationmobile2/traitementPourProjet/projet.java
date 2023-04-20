@@ -25,6 +25,10 @@ public class projet {
         this.dateFin=dateFin;
     }
 
+    public  String getIdProjet(){
+        return this.idProjet;
+    }
+
     public String getNom(){
        return this.nomProjet;
     }
@@ -54,7 +58,7 @@ public class projet {
     }
 
     /**
-     * methode permet de recuperer le jour de debut d'un projet
+     * methode permet de recuperer le nom jour de debut d'un projet
      * @return
      */
 
@@ -64,8 +68,22 @@ public class projet {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             dayOfWeekText = dateDebut.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.FRENCH);
         }
-        String dayOfWeekAbbreviation = dayOfWeekText.substring(0, 3);
+        String dayOfWeekAbbreviation = dayOfWeekText.substring(0, 3).toUpperCase();
         return dayOfWeekAbbreviation;
+    }
+
+    /**
+     * methode permet de recuperer le jour de debut d'un projet
+     * @return
+     */
+
+    public String recuperJourDatedb2(){
+        // Récupérer le jour de la semaine au format texte en français
+        String dayOfWeekText = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            dayOfWeekText = ""+dateDebut.getDayOfMonth();
+        }
+        return dayOfWeekText;
     }
 
     /**
@@ -73,11 +91,13 @@ public class projet {
      * @return
      */
 
-    public String recuperMoiDatedb(){
+    public String recuperMoiDatedb() {
+        String moisdb = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return ""+this.dateDebut.getMonth();
+            Month mois = dateDebut.getMonth();
+            moisdb = mois.getDisplayName(TextStyle.FULL, Locale.FRENCH).substring(0, 3).toUpperCase();
         }
-        return "problem";
+        return moisdb;
     }
 
     /**
@@ -86,7 +106,7 @@ public class projet {
      */
     public String recuperAnneeDatedb(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return ""+this.dateDebut.getYear();
+            return String.valueOf(this.dateDebut.getYear()).substring(2);
         }
         return "problem";
     }

@@ -7,7 +7,7 @@ app:cardUseCompatPadding="true"
 app:cardElevation="5dp"
 app:cardCornerRadius="10dp"
 app:contentPadding="10dp"
-android:layout_height="150dp">
+android:layout_height="160dp">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -26,7 +26,7 @@ android:layout_height="150dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/day"
+            android:id="@+id/dayprojet"
             android:text="Tue"
             android:layout_gravity="center"
             android:textSize="18sp"
@@ -34,7 +34,7 @@ android:layout_height="150dp">
             android:alpha="0.5"/>
 
         <TextView
-            android:id="@+id/datefinProjet"
+            android:id="@+id/daynbrprojet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="18"
@@ -51,6 +51,18 @@ android:layout_height="150dp">
             android:textSize="18sp"
             android:textColor="@android:color/black"
             android:alpha="0.5"/>
+
+        <TextView
+            android:id="@+id/datefinProjet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:textColor="@color/colorAccent"
+
+            />
+
 
     </LinearLayout>
 
