@@ -9,9 +9,11 @@ import android.widget.TextView;
 import com.example.planificationmobile2.traitementPourProjet.DataRecievedListener;
 
 import traitement_pour_lesTaches.afficherTache;
+import traitement_pour_lesTaches.projetRf;
 
 public class tacheActivity extends AppCompatActivity implements DataRecievedListener {
     private afficherTache lestache;
+    private TextView nomproj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,10 +21,8 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
 
         String url = "http://192.168.1.105:5000/affichertachechef";
 
-        TextView nomproj = findViewById(R.id.nomprojTache);
-        String nomprojet =getIntent().getStringExtra("nomproj");
-        System.out.println("-------------------------------------"+nomprojet);
-        nomproj.setText(nomprojet);
+        nomproj = findViewById(R.id.nomprojTache);
+
 
         this.lestache =new afficherTache(this);
         this.lestache.RecuperLesDonneJson(this,url);
@@ -31,8 +31,19 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
 
     @Override
     public void onDataRecieved() {
+
+        user usercourant =user.gestInstance();
+        if(usercourant.getVerifierchef()==1){
+            String nomprojet =getIntent().getStringExtra("nomproj");
+            nomproj.setText(nomprojet);
+        }else{
+            projetRf projetcourant =projetRf.getInstance();
+            nomproj.setText(projetcourant.getNomProj());
+        }
+
         ListView listetache =findViewById(R.id.tache);
         this.lestache.afficherEnsembletache(this,listetache);
+
     }
 }
 

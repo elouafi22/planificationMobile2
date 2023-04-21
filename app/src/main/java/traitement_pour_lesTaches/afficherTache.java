@@ -14,6 +14,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.planificationmobile2.traitementPourProjet.DataRecievedListener;
 import com.example.planificationmobile2.traitementPourProjet.projet;
 import com.example.planificationmobile2.traitementPourProjet.projetAdapeter;
+import com.example.planificationmobile2.user;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,9 +47,14 @@ public class afficherTache {
         JSONArray donnerenvoyer= new JSONArray();
         JSONObject postData = new JSONObject();
         projetRf projetcourant = projetRf.getInstance();
+
+        ///////// recuperer le user acutelle
+        user usercourant = user.gestInstance();
+
         try {
             postData.put("session_id",session_key);
             postData.put("idproj",projetcourant.getidproj());
+            postData.put("ischef",usercourant.getVerifierchef());
             donnerenvoyer.put(postData);
         } catch (
                 JSONException e) {
@@ -67,6 +73,7 @@ public class afficherTache {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
                             ensembleTache.add(new tache(obj.getInt("IDTACHE"),LocalDateTime.parse(obj.getString("DATE_CREATION"),formatter),LocalDateTime.parse(obj.getString("DATE_ECHEANCE"),formatter),LocalDateTime.parse(obj.getString("DUREE_ESTIMEE"),formatter),obj.getString("ETATT"),obj.getString("DECRIPTION"),obj.getInt("SCORE"),obj.getInt("IDPROJ"),obj.getString("NOMEMP")));
+                            projetcourant.setNomProj(obj.getString("nomproj"));
                         }
                     }catch (JSONException e){
                         e.printStackTrace();

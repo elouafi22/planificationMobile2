@@ -5,6 +5,7 @@ public class user {
     private static user user1;
     String nom;
     String password;
+    int verifierchef;
 
     public user(){
     }
@@ -23,6 +24,7 @@ public class user {
         this.password=password;
     }
 
+    public  void  setVerifierchef(int verifierchef){this.verifierchef=verifierchef;}
 
     public String getNom(){
         return this.nom;
@@ -31,6 +33,8 @@ public class user {
     public String getPassword(){
         return this.password;
     }
+
+    public int getVerifierchef(){return this.verifierchef;}
 
 
 }

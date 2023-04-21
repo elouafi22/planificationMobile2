@@ -56,6 +56,10 @@ public class connection {
                                 editor.putString("session_key", session_key);
                                 editor.apply();
 
+                                ////// stoker les donnes pour l'utilisateur courant
+                                user usercourant = user.gestInstance();
+                                usercourant.setVerifierchef(ischef);
+
                                 // Changer d'activité
                                 if(ischef==1){
                                     Intent nouveau = new Intent(context.getApplicationContext(),home.class);
