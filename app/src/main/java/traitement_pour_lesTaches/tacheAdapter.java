@@ -47,8 +47,38 @@ public class tacheAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view= this.inflater.inflate(R.layout.adapetprojet,null);
+        view= this.inflater.inflate(R.layout.adaptertache,null);
         tache tacheCourant = getItem(i);
+        /**
+         * recuperation des item depuit la vue
+         */
+        TextView descriptionTache = view.findViewById(R.id.descriptiontache);
+        TextView dureeRestant =view.findViewById(R.id.durerestanttache);
+        TextView statusTache = view.findViewById(R.id.statuttache);
+        TextView validerTache= view.findViewById(R.id.validerTache);
+
+        /**
+         * ajouter le contunue des tache dans les items
+         */
+
+        descriptionTache.setText(tacheCourant.getDescription());
+        statusTache.setText(tacheCourant.getEtat());
+        dureeRestant.setText(tacheCourant.dureRestant());
+
+
+        /**
+         * gerer l'evenement de clik sur le boutant valider tache
+         */
+
+        validerTache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "valider projet", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
 
 
         return view;

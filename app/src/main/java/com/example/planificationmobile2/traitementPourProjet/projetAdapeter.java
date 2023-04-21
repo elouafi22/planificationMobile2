@@ -1,6 +1,8 @@
 package com.example.planificationmobile2.traitementPourProjet;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.planificationmobile2.R;
+import com.example.planificationmobile2.home;
+import com.example.planificationmobile2.tacheActivity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import traitement_pour_lesTaches.projetRf;
 
 public class projetAdapeter extends BaseAdapter {
     private LayoutInflater inflater;
@@ -106,7 +112,12 @@ public class projetAdapeter extends BaseAdapter {
         planningprojet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,  projetcourant.recuperJourDatedb()+" "+projetcourant.recuperMoiDatedb()+" "+projetcourant.recuperAnneeDatedb()+" "+projetcourant.recuperJourDatedb2(), Toast.LENGTH_SHORT).show();
+                projetRf projetrfcourant= projetRf.getInstance();
+                projetrfcourant.setIdproj(projetcourant.getIdProjet());
+
+                Intent nouveau = new Intent(context.getApplicationContext(),tacheActivity.class);
+                context.startActivity(nouveau);
+                ((Activity)context).finish();
             }
         });
 

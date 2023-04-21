@@ -1,6 +1,9 @@
 package traitement_pour_lesTaches;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class tache {
 
@@ -64,6 +67,44 @@ public class tache {
 
     public String getNomEmp() {
         return nomEmp;
+    }
+
+    /**
+     * methode permet de recuperer la duree restant sur la fin d'un projet
+     * @return
+     */
+    public String dureRestant(){
+        String dureeRest="";
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDateTime dateAujourdhuit =LocalDateTime.now();
+            Period period = Period.between(dateAujourdhuit.toLocalDate(),duree_estimee.toLocalDate());
+
+            if(period.isNegative()){
+                long heurePasse= ChronoUnit.HOURS.between(duree_estimee,dateAujourdhuit);
+                if(heurePasse>-24)
+                    return heurePasse+"h";
+                ////////// pour les joure passe
+                return ChronoUnit.DAYS.between(duree_estimee,dateAujourdhuit)+"j";
+            } else if (period.isZero()) {
+
+                return "Aujourd'hui";
+
+            } else if (period.getMonths()>0) {
+                return "+"+ period.getMonths()+" j";
+            } else if (period.getDays()>0) {
+                return "+"+period.getDays()+" h";
+            }else{
+                Duration duration = Duration.between(LocalDateTime.now(),duree_estimee);
+                long heuresRestantes = duration.toHours();
+                long minutesRestantes = duration.toMinutes() % 60;
+                if(heuresRestantes<1)
+                    return "+"+heuresRestantes+" h";
+                return "+"+minutesRestantes+" min";
+            }
+        }
+
+        return  dureeRest;
     }
 
 
