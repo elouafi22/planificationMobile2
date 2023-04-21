@@ -55,7 +55,7 @@ public class tacheAdapter extends BaseAdapter {
         TextView descriptionTache = view.findViewById(R.id.descriptiontache);
         TextView dureeRestant =view.findViewById(R.id.durerestanttache);
         TextView statusTache = view.findViewById(R.id.statuttache);
-        TextView validerTache= view.findViewById(R.id.validerTache);
+        ImageView validerTache= view.findViewById(R.id.validerTache);
 
         /**
          * ajouter le contunue des tache dans les items
