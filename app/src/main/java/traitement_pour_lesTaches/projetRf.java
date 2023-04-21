@@ -5,7 +5,8 @@ import com.example.planificationmobile2.traitementPourProjet.projet;
 public class projetRf {
     private  static projetRf projet1;
 
-    String  idproj;
+    private String  idproj;
+    private String nomProj;
 
     public static projetRf getInstance(){
         if(projet1==null)
@@ -17,8 +18,12 @@ public class projetRf {
         this.idproj=idproj;
     }
 
+    public void setNomProj(String nomProj){this.nomProj=nomProj;}
+
     public String  getidproj(){
         return this.idproj;
     }
+
+    public String getNomProj(){return  this.nomProj;}
 
 }

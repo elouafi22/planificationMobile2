@@ -103,8 +103,8 @@ public class projetAdapeter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              popupprojet popupprojet = new popupprojet(context);
-              popupprojet.buils(nom,description,etatprojet,dateFin);
+                popupprojet popupprojet = new popupprojet(context);
+                popupprojet.buils(nom,description,etatprojet,dateFin);
 
             }
         });
@@ -112,10 +112,14 @@ public class projetAdapeter extends BaseAdapter {
         planningprojet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 projetRf projetrfcourant= projetRf.getInstance();
                 projetrfcourant.setIdproj(projetcourant.getIdProjet());
+                //nomproj.setText(projetrfcourant.getNomProj());
 
                 Intent nouveau = new Intent(context.getApplicationContext(),tacheActivity.class);
+                System.out.println("---------------------------------"+nom);
+                nouveau.putExtra("nomproj",nom);
                 context.startActivity(nouveau);
                 ((Activity)context).finish();
             }

@@ -5,14 +5,22 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".monPlanning">
+
+    <TextView
+        android:id="@+id/nomprojTache"
+        android:layout_width="match_parent"
+        android:text="Nom du projet"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_height="70dp"
+        android:padding="16dp"/>
 
     <ListView
         android:id="@+id/tache"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </ListView>
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
+
