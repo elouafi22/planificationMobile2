@@ -18,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
         TextView username =(TextView) findViewById(R.id.username);
         TextView password =(TextView) findViewById(R.id.password);
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
-
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 connection.get_connection(MainActivity.this, username.getText().toString(), password.getText().toString());
             }
         });
+
     }
 
 }

@@ -39,6 +39,8 @@ public class connection {
                         try {
                             //String status = response.getString("status");
                             String session_key = response.getString("session_id");
+                            int ischef =response.getInt("ischef");
+                            System.out.println("---------------------------"+ischef);
                             if (!session_key.isEmpty()) {
                                 // Connexion réussie
                                 Toast.makeText(context, "Connexion réussie  la valeur de la session est "+session_key, Toast.LENGTH_SHORT).show();
@@ -55,9 +57,15 @@ public class connection {
                                 editor.apply();
 
                                 // Changer d'activité
-                                Intent nouveau = new Intent(context.getApplicationContext(),home.class);
-                                context.startActivity(nouveau);
-                                ((Activity)context).finish();
+                                if(ischef==1){
+                                    Intent nouveau = new Intent(context.getApplicationContext(),home.class);
+                                    context.startActivity(nouveau);
+                                    ((Activity)context).finish();
+                                }else{
+                                    Intent nouveau = new Intent(context.getApplicationContext(),MainActivityClient.class);
+                                    context.startActivity(nouveau);
+                                    ((Activity)context).finish();
+                                }
                             } else {
                                 // Connexion échouée
                                 String message = response.getString("message");
