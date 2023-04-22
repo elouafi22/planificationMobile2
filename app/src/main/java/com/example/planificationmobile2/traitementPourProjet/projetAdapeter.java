@@ -118,7 +118,6 @@ public class projetAdapeter extends BaseAdapter {
                 //nomproj.setText(projetrfcourant.getNomProj());
 
                 Intent nouveau = new Intent(context.getApplicationContext(),tacheActivity.class);
-                System.out.println("---------------------------------"+nom);
                 nouveau.putExtra("nomproj",nom);
                 context.startActivity(nouveau);
                 ((Activity)context).finish();

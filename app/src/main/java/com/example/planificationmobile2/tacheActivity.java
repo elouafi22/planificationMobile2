@@ -2,7 +2,11 @@ package com.example.planificationmobile2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +18,7 @@ import traitement_pour_lesTaches.projetRf;
 public class tacheActivity extends AppCompatActivity implements DataRecievedListener {
     private afficherTache lestache;
     private TextView nomproj;
+    private ImageView fleche_gauche;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,25 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
 
         this.lestache =new afficherTache(this);
         this.lestache.RecuperLesDonneJson(this,url);
+
+        fleche_gauche=findViewById(R.id.fleche_gauche);
+        fleche_gauche.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                user usercourant =user.gestInstance();
+                if(usercourant.getVerifierchef()==1){
+                    Intent nouveau = new Intent(getApplicationContext(),monPlanning.class);
+                    startActivity(nouveau);
+                    finish();
+                }else{
+                    Intent nouveau = new Intent(getApplicationContext(),MainActivityClient.class);
+                    startActivity(nouveau);
+                    finish();
+                }
+
+            }
+        });
+
 
     }
 
