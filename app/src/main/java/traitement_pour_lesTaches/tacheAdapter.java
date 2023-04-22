@@ -60,10 +60,28 @@ public class tacheAdapter extends BaseAdapter {
         /**
          * ajouter le contunue des tache dans les items
          */
-
+        String etat=tacheCourant.getEtat();
         descriptionTache.setText(tacheCourant.getDescription());
-        statusTache.setText(tacheCourant.getEtat());
-        dureeRestant.setText(tacheCourant.dureRestant());
+        statusTache.setText(etat);
+        String periode =tacheCourant.dureRestant();
+        dureeRestant.setText(periode);
+        if(periode.contains("+"))
+            dureeRestant.setBackgroundColor(Color.GREEN);
+        else if (periode.equals("Aujourd'hui")) {
+            dureeRestant.setBackgroundColor(Color.YELLOW);
+        }else
+            dureeRestant.setBackgroundColor(Color.RED);
+
+        ///////// ajouter la couleur pour le status
+        System.out.println("-----------------------"+etat);
+        if(etat.equals("en cours de execution"))
+            statusTache.setBackgroundColor(Color.YELLOW);
+        else if (etat.equals("terminee")) {
+            statusTache.setBackgroundColor(Color.GREEN);
+
+        } else if (etat.equals("non terminee")) {
+            statusTache.setBackgroundColor(Color.RED);
+        }
 
 
         /**
