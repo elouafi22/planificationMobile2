@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:titleTextStyle">@style/ActionBarTitle</item>
     </style>
 
     <style name="Theme.PlanificationMobile2.NoActionBar">
@@ -19,7 +20,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
+
     <style name="Theme.PlanificationMobile2.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PlanificationMobile2.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

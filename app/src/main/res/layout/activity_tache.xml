@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     tools:context=".monPlanning">
 
     <TextView
@@ -14,6 +13,7 @@
         android:text="Nom du projet"
         android:textSize="30sp"
         android:gravity="center"
+        android:minHeight="70dp"
         android:layout_height="70dp"
         android:padding="16dp"/>
 

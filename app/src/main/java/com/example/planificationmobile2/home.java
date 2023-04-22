@@ -12,6 +12,7 @@ public class home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_home);
         ImageView buton_monPalanning=(ImageView) findViewById(R.id.monplaging);
         ImageView buton_nouveau=(ImageView) findViewById(R.id.nouveau);

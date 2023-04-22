@@ -17,6 +17,7 @@ public class MainActivityClient extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_main_client);
 
         btn_mon_planning=findViewById(R.id.btn_mon_planning);
