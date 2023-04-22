@@ -56,7 +56,10 @@ public class projetAdapeter extends BaseAdapter {
         String nom=projetcourant.getNom();
         String description =projetcourant.getDescriptionProjet();
         String etatprojet= projetcourant.getEtatProjet();
-        String  dateFin = projetcourant.dureRestant();
+        String  dateFin ="";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            dateFin = ""+projetcourant.getDateFin().toLocalDate();
+        }
 
         /// injecter les informations dans le textview
         TextView nomprojet= view.findViewById(R.id.nomprojet);
@@ -100,11 +103,12 @@ public class projetAdapeter extends BaseAdapter {
         ImageView planningprojet = view.findViewById(R.id.planningprojet);
 
 
+        String finalDateFin = dateFin;
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 popupprojet popupprojet = new popupprojet(context);
-                popupprojet.buils(nom,description,etatprojet,dateFin);
+                popupprojet.buils(nom,description,etatprojet, finalDateFin);
 
             }
         });

@@ -82,15 +82,17 @@ public class tache {
 
             if(period.isNegative()){
                 long heurePasse= ChronoUnit.HOURS.between(duree_estimee,dateAujourdhuit);
-                if(heurePasse>-24)
-                    return heurePasse+"h";
+                if(heurePasse<-24)
+                    return "-"+heurePasse+"h";
                 ////////// pour les joure passe
-                return ChronoUnit.DAYS.between(duree_estimee,dateAujourdhuit)+"j";
+                return "-"+ChronoUnit.DAYS.between(duree_estimee,dateAujourdhuit)+"j";
             } else if (period.isZero()) {
 
                 return "Aujourd'hui";
 
             } else if (period.getMonths()>0) {
+                if(period.getMonths()>365)
+                    return ""+duree_estimee.toLocalDate();
                 return "+"+ period.getMonths()+" j";
             } else if (period.getDays()>0) {
                 return "+"+period.getDays()+" h";
@@ -98,7 +100,7 @@ public class tache {
                 Duration duration = Duration.between(LocalDateTime.now(),duree_estimee);
                 long heuresRestantes = duration.toHours();
                 long minutesRestantes = duration.toMinutes() % 60;
-                if(heuresRestantes<1)
+                if(heuresRestantes<0)
                     return "+"+heuresRestantes+" h";
                 return "+"+minutesRestantes+" min";
             }
