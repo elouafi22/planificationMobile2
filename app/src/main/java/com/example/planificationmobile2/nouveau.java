@@ -67,7 +67,7 @@ public class nouveau extends AppCompatActivity {
         }
         // make json object with value of form and send it to the server flask
 
-        user user1 = user.getInstance();
+        user user1 = user.gestInstance();
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");

@@ -39,9 +39,7 @@ public class user {
      * remoeve user
      */
     public static void removeUser(){
-        this.nom=null;
-        this.password=null;
-        this.user1=null;
+        user1=null;
     }
     public int getVerifierchef(){return this.verifierchef;}
 

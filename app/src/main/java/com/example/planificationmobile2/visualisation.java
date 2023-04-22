@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.services.events.TimeStamp;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -107,20 +108,20 @@ public class visualisation extends AppCompatActivity {
                         // ajouet le tache on list de Task
                         for (int i = 0; i < response.getJSONArray("taches").length(); i++) {
                             JSONObject tache = response.getJSONArray("taches").getJSONObject(i);
-                            TimeStamp timeStamp = new TimeStamp(tache.getString("date_creation"));
-                            
+                            //TimeStamp timeStamp = new TimeStamp(tache.getString("date_creation"));
+
                             Calendar date = Calendar.getInstance();
                             // Class Date is deprecated but it's the only way to convert String to Date return class Date date of format yyyy-MM-dd
                             //date.setTime(new Date(tache.getString("date")));
                             
-                            date.setTimeInMillis(timestamp.getTime()); // convert timestamp to calendar
+                            date.setTimeInMillis(Integer.parseInt(tache.getString("date_creation") )); // convert timestamp to calendar
                             // time of task (HH:mm)
                             //String timedate = tache.getString("heure_minute"); // <-- new champ (heure_minute) on table tache
                             //Calendar calendar = Calendar.getInstance();
                             //calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timedate.substring(0, 2))); // second parameter is the hour of the day that you want to set
 
                             // ajouter le tache on list de Task pour afficher dans le recycler view
-                            list.add(new Task(tache.getString("nom"), tache.getString("description"), calendar));
+                            list.add(new Task(tache.getString("nom"), tache.getString("description"), date));
                             collapsibleCalendar.addEventTag(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
 
                             if ( ( date.get(Calendar.DAY_OF_MONTH) == datePicker.getDayOfMonth() )

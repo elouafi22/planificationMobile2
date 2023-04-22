@@ -46,14 +46,14 @@ public class tache extends AppCompatActivity {
     static private String urlMatreriel = "http://20.55.44.15:8000/afficheMateriel/";
     static private String urlTache = "http://20.55.44.15:8000/ajouterTache";
 
-    String[] materiels ;
+    String[] personnes ;
 
     boolean[] selectedPersonne;
     ArrayList<Integer> PersonneArray = new ArrayList<>();
     String[] projets ;
 
+    String[] materiels;
 
-    String[] materiels ;
     boolean[] selectedMateriel;
     ArrayList<Integer> MaterielArray = new ArrayList<>();
 
@@ -127,7 +127,7 @@ public class tache extends AppCompatActivity {
 
                 // send json to server flask
 
-                user user1 = user.getInstance();
+                user user1 = user.gestInstance();
 
                 JSONObject jsonTache = new JSONObject();
                 {
@@ -184,7 +184,7 @@ public class tache extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 String session_key = sharedPreferences.getString("session_key", "");
 
-                user user1 = user.getInstance();
+                user user1 = user.gestInstance();
 
                 JSONObject jsonprojet = new JSONObject();
                 
@@ -254,7 +254,7 @@ public class tache extends AppCompatActivity {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
 
-        user user1 = user.getInstance();
+        user user1 = user.gestInstance();
 
         JSONObject jsonObject = new JSONObject();
         
@@ -277,7 +277,7 @@ public class tache extends AppCompatActivity {
                         personnes = new String[response.getJSONArray("personnes").length()];
                         for (int i = 0; i < response.getJSONArray("personnes").length(); i++) {
                             JSONObject personne = response.getJSONArray("personnes").getJSONObject(i);
-                            String name = personnes.getString("NOMP");
+                            String name = personne.getString("NOMP");
                             personnes[i] = name;
                         }
 
@@ -298,7 +298,6 @@ public class tache extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jonrequestPersonne);
-
         selectedPersonne = new boolean[personnes.length];
 
         listPersonne.setOnClickListener(new View.OnClickListener() {
