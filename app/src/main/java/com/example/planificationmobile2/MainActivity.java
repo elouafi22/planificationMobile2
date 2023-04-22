@@ -2,6 +2,8 @@ package com.example.planificationmobile2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.health.SystemHealthManager;
 import android.view.View;
@@ -18,13 +20,19 @@ public class MainActivity extends AppCompatActivity {
         TextView username =(TextView) findViewById(R.id.username);
         TextView password =(TextView) findViewById(R.id.password);
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
-
+        
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 connection.get_connection(MainActivity.this, username.getText().toString(), password.getText().toString());
             }
         });
+
+         
+        // for test without login
+        //Intent nouveau = new Intent(this.getApplicationContext(),home.class);
+        //this.startActivity(nouveau);
+        //((Activity)this).finish();
     }
 
 }

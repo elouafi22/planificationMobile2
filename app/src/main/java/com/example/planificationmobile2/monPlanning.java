@@ -78,6 +78,15 @@ public class monPlanning extends AppCompatActivity implements DataRecievedListen
         }
     }
 
+    // onKeyBack is for back button in android
+    @Override
+    public void onBackPressed() {  // back button pressed in android device in previous activity
+        Intent nouveau = new Intent(getApplicationContext(),home.class);
+        startActivity(nouveau);
+        finish();
+
+    }
+
 
 }
 

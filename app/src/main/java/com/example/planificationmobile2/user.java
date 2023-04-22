@@ -24,6 +24,7 @@ public class user {
     }
 
 
+
     public String getNom(){
         return this.nom;
     }
@@ -32,5 +33,13 @@ public class user {
         return this.password;
     }
 
+    /**
+     * remoeve user
+     */
+    public static void removeUser(){
+        this.nom=null;
+        this.password=null;
+        this.user1=null;
+    }
 
 }
