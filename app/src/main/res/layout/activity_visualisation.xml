@@ -18,7 +18,8 @@
         app:selectedItem_background="@drawable/circle_white_solid_background"
         app:buttonLeft_drawableTintColor="@android:color/white"
         app:buttonRight_drawableTintColor="@android:color/white"
-        app:expandIconColor="@android:color/white">
+        app:expandIconColor="@android:color/white"
+        tools:ignore="MissingClass">
     </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
 
     <androidx.recyclerview.widget.RecyclerView

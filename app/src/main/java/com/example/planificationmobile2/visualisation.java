@@ -123,7 +123,6 @@ public class visualisation extends AppCompatActivity {
                             // ajouter le tache on list de Task pour afficher dans le recycler view
                             list.add(new Task(tache.getString("nom"), tache.getString("description"), date));
                             collapsibleCalendar.addEventTag(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
-
                             if ( ( date.get(Calendar.DAY_OF_MONTH) == datePicker.getDayOfMonth() )
                                     && ( date.get(Calendar.MONTH) == datePicker.getMonth() )
                                     && ( date.get(Calendar.YEAR) == datePicker.getYear() ) )

@@ -23,7 +23,7 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppTheme_NoActionBar);
-        setContentView(R.layout.activity_tache);
+        setContentView(R.layout.activyti_tache2);
 
         String url = "http://192.168.1.103:5000/affichertachechef";
 

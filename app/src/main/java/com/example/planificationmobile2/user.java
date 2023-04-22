@@ -38,7 +38,7 @@ public class user {
     /**
      * remoeve user
      */
-    public static void removeUser(){
+    public  void removeUser(){
         user1=null;
     }
     public int getVerifierchef(){return this.verifierchef;}
