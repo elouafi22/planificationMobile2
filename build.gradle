@@ -16,7 +16,5 @@ plugins {
 
 allprojects {
     repositories {
-
-
     }
 }

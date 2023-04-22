@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,17 +15,26 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONObject;
 
 public class nouveau extends AppCompatActivity {
 
+
+    //String url = "http://192.168.1.105:5000/ajouterProjet";
+    String url = "http://localhost:5000/ajouterProjet"; // <<-- need to be created
+    //String url = "http://20.55.44.15:5000/ajouterProjet";
+
     TextInputLayout ProjetName , DescriptionProjet;
     DatePicker dateDebut, dateFin;
+
+    Button btnCreerProjet, btnAnnulerProjet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,60 +52,23 @@ public class nouveau extends AppCompatActivity {
         dateDebut.updateDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDayOfMonth());
         dateFin.updateDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDayOfMonth() + 20);
 
+        btnCreerProjet = (Button) findViewById(R.id.creer);
+        btnAnnulerProjet = (Button) findViewById(R.id.annuler);
 
-
-    }
-    /*
-    // i don't need it i just need form of cree projet :
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.exemple, menu);
-        return true;
+        btnCreerProjet.setOnClickListener(v -> creer());
+        btnAnnulerProjet.setOnClickListener(v -> annuler());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.itemAnalyse:
-                Intent nouveau = new Intent(getApplicationContext(),analyser.class);
-                startActivity(nouveau);
-                finish();
-                return true;
-            case R.id.itemMonPlanning:
-                Intent nouveau2 = new Intent(getApplicationContext(),monPlanning.class);
-                startActivity(nouveau2);
-                finish();
-                return true;
-            case R.id.itemNouveau:
-                Intent nouveau3 = new Intent(getApplicationContext(), com.example.planificationmobile2.nouveau.class);
-                startActivity(nouveau3);
-                finish();
-                return true;
-            case R.id.itemvisualisation:
-                Intent nouveau4 = new Intent(getApplicationContext(),visualisation.class);
-                startActivity(nouveau4);
-                finish();
-                return true;
-            case R.id.itemDeconnection:
-                Intent nouveau5 = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(nouveau5);
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    */
     /**
      * validation du form pour creer un nouveau projet
      */
     private void creer() {
-        if (!validateNameProjet() | !validateDescriptionProjet() | !validateDebutDate() | !validateFinDate()) {
+        if (!validateNameProjet() || !validateDescriptionProjet() || !validateDebutDate() || !validateFinDate()) {
             return;
         }
         // make json object with value of form and send it to the server flask
+
+        user user1 = user.getInstance();
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
@@ -103,6 +76,8 @@ public class nouveau extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("session_id", session_key);
+            jsonObject.put("username", user1.getNom());
+            jsonObject.put("password",user1.getPassword());
             jsonObject.put("name", ProjetName.getEditText().getText().toString().trim());
             jsonObject.put("description", DescriptionProjet.getEditText().getText().toString().trim());
             jsonObject.put("dateDeb", dateDebut.getYear() + "-" + dateDebut.getMonth() + "-" + dateDebut.getDayOfMonth());
@@ -112,9 +87,6 @@ public class nouveau extends AppCompatActivity {
         }
 
 
-        //String url = "http://192.168.1.105:5000/ajouterProjet";
-        String url = "http://localhost:5000/ajouterProjet"; // <<-- need to be created
-        //String url = "http://20.55.44.15:5000/ajouterProjet";
         // envoie de la requete au serveur flask
 
         JsonObjectRequest jonrequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
@@ -143,7 +115,8 @@ public class nouveau extends AppCompatActivity {
             }
 
         });
-
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jonrequest);
 
     }
 
@@ -159,17 +132,17 @@ public class nouveau extends AppCompatActivity {
 
     private boolean validateNameProjet() {
         String val = ProjetName.getEditText().getText().toString().trim();
-        String checkspaces = "Aw{1,20}z";
         if (val.isEmpty()) {
             ProjetName.setError("Le champ ne peut pas être vide");
             return false;
-        } else if (val.length() > 20) {
-            ProjetName.setError("le nom est trop grand !");
+        }  else if (val.length() > 50 ) {
+            ProjetName.setError("Nom de tache trop long");
             return false;
-        } else if (!val.matches(checkspaces)) {
-            ProjetName.setError("Aucun espace blanc n'est autorisé !");
+        }else if (val.length() < 5){
+            ProjetName.setError("Nom de tache trop court");
             return false;
         } else {
+            ProjetName.getEditText().setText(val);
             ProjetName.setError(null);
             ProjetName.setErrorEnabled(false);
             return true;
@@ -177,17 +150,19 @@ public class nouveau extends AppCompatActivity {
     }
 
     private boolean validateDescriptionProjet() {
-        String val = ProjetName.getEditText().getText().toString().trim();
-        String checkspaces = "Aw{1,20}z";
+        String val = DescriptionProjet.getEditText().getText().toString().trim();
         if (val.isEmpty()) {
-            ProjetName.setError("Le champ ne peut pas être vide");
+            DescriptionProjet.setError("Le champ ne peut pas être vide");
             return false;
-        } else if (!val.matches(checkspaces)) {
-            ProjetName.setError("Aucun espace blanc n'est autorisé !");
+        } else if (val.length() > 100 ) {
+            DescriptionProjet.setError("Description trop long");
             return false;
-        } else {
-            ProjetName.setError(null);
-            ProjetName.setErrorEnabled(false);
+        } else if (val.length() < 10) {
+            DescriptionProjet.setError("Description trop court");
+            return false;
+        }else {
+            DescriptionProjet.setError(null);
+            DescriptionProjet.setErrorEnabled(false);
             return true;
         }
     }
@@ -204,12 +179,15 @@ public class nouveau extends AppCompatActivity {
         int year = dateDebut.getYear();
 
         if (year < currentYear) {
+            Toast.makeText(getApplicationContext(), "La date de début doit être supérieur à la date actuelle", Toast.LENGTH_SHORT).show();
             return false;
         } else if (year == currentYear) {
             if (month < currentMonth) {
+                Toast.makeText(getApplicationContext(), "La date de début doit être supérieur à la date actuelle", Toast.LENGTH_SHORT).show();
                 return false;
             } else if (month == currentMonth) {
                 if (day < currentDay) {
+                    Toast.makeText(getApplicationContext(), "La date de début doit être supérieur à la date actuelle", Toast.LENGTH_SHORT).show();
                     return false;
                 } else {
                     return true;
@@ -225,12 +203,15 @@ public class nouveau extends AppCompatActivity {
 
     private boolean validateFinDate() {
         if (dateFin.getYear() < dateDebut.getYear()) {
+            Toast.makeText(getApplicationContext(), "La date de fin doit être supérieur à la date de début", Toast.LENGTH_SHORT).show();
             return false;
         } else if (dateFin.getYear() == dateDebut.getYear()) {
             if (dateFin.getMonth() < dateDebut.getMonth()) {
+                Toast.makeText(getApplicationContext(), "La date de fin doit être supérieur à la date de début", Toast.LENGTH_SHORT).show();
                 return false;
             } else if (dateFin.getMonth() == dateDebut.getMonth()) {
                 if (dateFin.getDayOfMonth() < dateDebut.getDayOfMonth()) {
+                    Toast.makeText(getApplicationContext(), "La date de fin doit être supérieur à la date de début", Toast.LENGTH_SHORT).show();
                     return false;
                 } else {
                     return true;
@@ -240,6 +221,15 @@ public class nouveau extends AppCompatActivity {
             return true;
         }
         return false; // TODO: 2021-05-03
+    }
+
+    // onKeyBack is for back button in android
+    @Override
+    public void onBackPressed() {  // back button pressed in android device in previous activity
+        Intent nouveau = new Intent(getApplicationContext(),home.class);
+        startActivity(nouveau);
+        finish();
+
     }
 
 }

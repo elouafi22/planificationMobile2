@@ -26,6 +26,7 @@ public class user {
 
     public  void  setVerifierchef(int verifierchef){this.verifierchef=verifierchef;}
 
+
     public String getNom(){
         return this.nom;
     }
@@ -34,6 +35,14 @@ public class user {
         return this.password;
     }
 
+    /**
+     * remoeve user
+     */
+    public static void removeUser(){
+        this.nom=null;
+        this.password=null;
+        this.user1=null;
+    }
     public int getVerifierchef(){return this.verifierchef;}
 
 
