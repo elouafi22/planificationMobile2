@@ -11,6 +11,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_splash_screen);
         // rediriger vers la page pricipale mainActivity apes une dure determiner
 

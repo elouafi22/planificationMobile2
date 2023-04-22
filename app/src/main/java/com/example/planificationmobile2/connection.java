@@ -17,15 +17,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class connection {
-    /*
-    private static String url = "http://100.71.33.221:5000/authentification";
+    
+    //private static String url = "http://100.71.33.221:5000/authentification";
 
-    private static String url = "http://192.168.1.105:5000/authentification";
-    private static String url ="http://20.55.44.15:5000/";
-
-   */
-
-    private static String url = "http://localhost:5000";
+    //private static String url = "http://192.168.1.105:5000/authentification";
+    // private static String url ="http://20.55.44.15:8000/";
+    private static String url = "http://192.168.1.103:5000/authentification";
     public static void get_connection(Context context, String username ,String password){
         JSONObject postData = new JSONObject();
         try {
@@ -43,6 +40,8 @@ public class connection {
                         try {
                             //String status = response.getString("status");
                             String session_key = response.getString("session_id");
+                            int ischef =response.getInt("ischef");
+                            System.out.println("---------------------------"+ischef);
                             if (!session_key.isEmpty()) {
                                 // Connexion réussie
                                 Toast.makeText(context, "Connexion réussie  la valeur de la session est "+session_key, Toast.LENGTH_SHORT).show();
@@ -58,10 +57,20 @@ public class connection {
                                 editor.putString("session_key", session_key);
                                 editor.apply();
 
+                                ////// stoker les donnes pour l'utilisateur courant
+                                user usercourant = user.gestInstance();
+                                usercourant.setVerifierchef(ischef);
+
                                 // Changer d'activité
-                                Intent nouveau = new Intent(context.getApplicationContext(),home.class);
-                                context.startActivity(nouveau);
-                                ((Activity)context).finish();
+                                if(ischef==1){
+                                    Intent nouveau = new Intent(context.getApplicationContext(),home.class);
+                                    context.startActivity(nouveau);
+                                    ((Activity)context).finish();
+                                }else{
+                                    Intent nouveau = new Intent(context.getApplicationContext(),MainActivityClient.class);
+                                    context.startActivity(nouveau);
+                                    ((Activity)context).finish();
+                                }
                             } else {
                                 // Connexion échouée
                                 String message = response.getString("message");

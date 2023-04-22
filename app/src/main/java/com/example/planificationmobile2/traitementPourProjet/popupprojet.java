@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import com.example.planificationmobile2.R;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Stack;
+
 public class popupprojet extends Dialog {
     private TextView nomprojet;
     private TextView descriptionprojet;
@@ -23,12 +27,12 @@ public class popupprojet extends Dialog {
 
     }
 
-   public void buils(String nom,String descriptionprojet,String statueprojet,String dateFin) {
+   public void buils(String nom, String descriptionprojet, String statueprojet, String dateFin) {
         show();
        setnomprojet(nom);
        setDescriptionprojet(descriptionprojet);
       // setStatueprojet(statueprojet);
-       setDateFin(dateFin);
+       setDateFin(""+dateFin);
    }
 
     public void setnomprojet(String nom){

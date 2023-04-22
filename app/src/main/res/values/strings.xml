@@ -21,6 +21,10 @@
     <string name="item_projet">nom projet</string>
     <string name="statutprojet">statue projet</string>
     <string name="datefinprojet">date fin</string>
+    <string name="mon_planning_title"> Mon Planning</string>
+    <string name="nouveau_title">Nouveau</string>
+    <string name="visualisation_title">Visualisation</string>
+    <string name="analyse_title">Analyse</string>
 
     <string-array name="choisirgrapht">
         <item>difference</item>

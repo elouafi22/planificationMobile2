@@ -1,5 +1,4 @@
-package com.example.planificationmobile2.traitementPourProjet;
-
+package traitement_pour_lesTaches;
 import android.content.Context;
 import android.os.Build;
 import android.widget.ListView;
@@ -12,6 +11,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.planificationmobile2.traitementPourProjet.DataRecievedListener;
+import com.example.planificationmobile2.traitementPourProjet.projet;
+import com.example.planificationmobile2.traitementPourProjet.projetAdapeter;
+import com.example.planificationmobile2.user;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,18 +26,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class afficherProjet {
-    private  ArrayList<projet> ensembleProjet;
+public class afficherTache {
+    private  ArrayList<tache> ensembleTache;
     private DataRecievedListener listener;
 
 
-    public afficherProjet(DataRecievedListener listener) {
-        this.ensembleProjet= new ArrayList<>();
+    public afficherTache(DataRecievedListener listener) {
+        this.ensembleTache= new ArrayList<>();
         this.listener=listener;
 
     }
-
-
     public void RecuperLesDonneJson(Context context, String url){
 
         // recuperer la valeur de la cle et onvoyee dans la requete
@@ -45,8 +46,15 @@ public class afficherProjet {
         System.out.println(session_key);
         JSONArray donnerenvoyer= new JSONArray();
         JSONObject postData = new JSONObject();
+        projetRf projetcourant = projetRf.getInstance();
+
+        ///////// recuperer le user acutelle
+        user usercourant = user.gestInstance();
+
         try {
             postData.put("session_id",session_key);
+            postData.put("idproj",projetcourant.getidproj());
+            postData.put("ischef",usercourant.getVerifierchef());
             donnerenvoyer.put(postData);
         } catch (
                 JSONException e) {
@@ -62,10 +70,10 @@ public class afficherProjet {
                 for(int i=0;i<response.length();i++){
                     try {
                         JSONObject obj = response.getJSONObject(i);
-                        //  ensembleProjet.add(new projet(obj.getString("idprojet"),obj.getString("nomprojet"),obj.getString("description"),obj.getString("dateDebut"),obj.getString("chefProjet"),obj.getString("etatProjet")));
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
-                            ensembleProjet.add(new projet(obj.getString("IDPROJ"),obj.getString("NOMPROJ"),obj.getString("DESCRIPTION"),LocalDateTime.parse(obj.getString("DATEDEB"),formatter),LocalDateTime.parse(obj.getString("DateFin"),formatter),obj.getString("PN"),obj.getString("ETATPROJ")));
+                            ensembleTache.add(new tache(obj.getInt("IDTACHE"),LocalDateTime.parse(obj.getString("DATE_CREATION"),formatter),LocalDateTime.parse(obj.getString("DATE_ECHEANCE"),formatter),LocalDateTime.parse(obj.getString("DUREE_ESTIMEE"),formatter),obj.getString("ETATT"),obj.getString("DECRIPTION"),obj.getInt("SCORE"),obj.getInt("IDPROJ"),obj.getString("NOMEMP")));
+                            projetcourant.setNomProj(obj.getString("nomproj"));
                         }
                     }catch (JSONException e){
                         e.printStackTrace();
@@ -85,9 +93,9 @@ public class afficherProjet {
 
     }
 
-    public void afficherEnsembleProjet(Context context,ListView toutProjet ) {
-        if (ensembleProjet.size() > 0) {
-            toutProjet.setAdapter(new projetAdapeter(context, ensembleProjet));
+    public void afficherEnsembletache(Context context,ListView toutProjet ) {
+        if (ensembleTache.size() > 0) {
+            toutProjet.setAdapter(new tacheAdapter(context, ensembleTache));
         } else {
             // Affichage d'un message si la liste est vide
             Toast.makeText(context, "Aucun projet n'a été trouvé", Toast.LENGTH_SHORT).show();
@@ -98,4 +106,5 @@ public class afficherProjet {
     }
 
 }
+
 

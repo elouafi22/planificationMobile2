@@ -7,43 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".monPlanning">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_200"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Nom"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Statut"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Date Fin"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
-
     <ListView
         android:id="@+id/projet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
     </ListView>
-
 
 
 </LinearLayout>
