@@ -125,7 +125,7 @@ public class nouveau extends AppCompatActivity {
      * annuler la creation du projet
      */
     private void annuler() {
-        Intent intent = new Intent(getApplicationContext(), monPlanning.class);
+        Intent intent = new Intent(getApplicationContext(),home.class);
         startActivity(intent);
         finish();
     }

@@ -44,7 +44,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-
 public class visualisation extends AppCompatActivity {
 
     List<Task> list;
