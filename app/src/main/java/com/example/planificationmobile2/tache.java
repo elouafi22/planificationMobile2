@@ -110,6 +110,7 @@ public class tache extends AppCompatActivity {
 
 
         // test validation de la tache then send json to server flask
+
         btnAjouterTache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,7 +171,7 @@ public class tache extends AppCompatActivity {
 
         listprojet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // code in {...} will be executed when the user clicks on an item from the list
-            /* 
+
             {
                 projets = new String[20];
                 for (int i = 0; i < 20;i++)
@@ -178,8 +179,8 @@ public class tache extends AppCompatActivity {
                 adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.listprojet, projets);
                 listprojet.setAdapter(adapter);
             }
-              */
-        
+
+            /*
             { 
                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 String session_key = sharedPreferences.getString("session_key", "");
@@ -230,7 +231,7 @@ public class tache extends AppCompatActivity {
 
                 });
             }
-
+            */
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String var_projet = adapterView.getItemAtPosition(i).toString();
@@ -243,14 +244,14 @@ public class tache extends AppCompatActivity {
         //String[] personnes ;
         //boolean[] selectedPersonne;
         //ArrayList<Integer> PersonneArray = new ArrayList<>();
-        /* 
+
         // test
         personnes = new String[20];
         for (int i = 0; i < 20;i++)
             personnes[i] = "Personne " + i;
 
-        */
 
+        /*
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
 
@@ -298,6 +299,9 @@ public class tache extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jonrequestPersonne);
+
+
+         */
         selectedPersonne = new boolean[personnes.length];
 
         listPersonne.setOnClickListener(new View.OnClickListener() {
@@ -387,12 +391,12 @@ public class tache extends AppCompatActivity {
         //boolean[] selectedMateriel;
         //ArrayList<Integer> MaterielArray = new ArrayList<>();
         // test
-        /* 
+
         materiels = new String[20];
         for (int i = 0; i < 20;i++)
             materiels[i] = "materiel " + i;
-        */
 
+        /*
         JsonObjectRequest jonrequestMateriel = new JsonObjectRequest(Request.Method.POST, urlMatreriel, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -423,7 +427,7 @@ public class tache extends AppCompatActivity {
         });
 
         requestQueue.add(jonrequestMateriel);
-
+        */
 
         selectedMateriel = new boolean[materiels.length];
 
