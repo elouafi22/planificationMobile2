@@ -41,10 +41,17 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class tache extends AppCompatActivity {
 
-    static private String urlProjet = "http://20.55.44.15:8000/afficherProjetDeTache";
-    static private String urlPersonne = "http://20.55.44.15:8000/affichePersonner/";
-    static private String urlMatreriel = "http://20.55.44.15:8000/afficheMateriel/";
-    static private String urlTache = "http://20.55.44.15:8000/ajouterTache";
+    //static private String urlProjet = "http://20.55.44.15:8000/afficherProjetDeTache";
+    //static private String urlPersonne = "http://20.55.44.15:8000/affichePersonner/";
+    //static private String urlMatreriel = "http://20.55.44.15:8000/afficheMateriel/";
+    //static private String urlTache = "http://20.55.44.15:8000/ajouterTache";
+
+
+    static private String urlProjet = "http://localhost:8000/afficherProjetDeTache";
+    static private String urlPersonne = "http://localhost:8000/affichePersonner/";
+    static private String urlMatreriel = "http://localhost:8000/afficheMateriel/";
+    static private String urlTache = "http://localhost:8000/ajouterTache";
+
 
     String[] personnes ;
 
