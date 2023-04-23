@@ -165,10 +165,9 @@ public class visualisation extends AppCompatActivity {
             collapsibleCalendar.addEventTag(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
 
         }
-
+        Calendar calendar = Calendar.getInstance();
+        calendar.getInstance().set(2023,3,12,6,30);
         for (int i = 10; i < 20; i++) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.getInstance().set(2023,3,12,6,30);
             list.add(new Task("task"+i,"Description"+i,calendar )); // month start from 0 to 11
             collapsibleCalendar.addEventTag(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
 
