@@ -69,7 +69,7 @@ public class tacheAdapter extends BaseAdapter {
         String etat=tacheCourant.getEtat();
         descriptionTache.setText(tacheCourant.getDescription());
         statusTache.setText(etat);
-        String periode =tacheCourant.dureRestant();
+        String periode =tacheCourant.dureeRestante();
         dureeRestant.setText(periode);
         if(periode.contains("+"))
             dureeRestant.setBackgroundColor(Color.GREEN);
@@ -94,16 +94,16 @@ public class tacheAdapter extends BaseAdapter {
          * gerer l'evenement de clik sur le boutant valider tache
          */
 
-        validerTache.setOnClickListener(v -> {
-            FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-            RatingDialog.showRateAppDialogNormal(fragmentManager, context, tacheCourant.getIdtache());
+            validerTache.setOnClickListener(v -> {
+                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                RatingDialog.showRateAppDialogNormal(fragmentManager, context, tacheCourant.getIdtache());
 
-        });
-
-
-
-
+            });
 
         return view;
     }
+
+
+
+
 }

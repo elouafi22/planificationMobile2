@@ -70,5 +70,16 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
         this.lestache.afficherEnsembletache(this,listetache);
 
     }
+/*
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Mettre à jour la liste des tâches affichées
+        onDataRecieved();
+
+
+    }
+
+ */
 }
 

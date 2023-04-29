@@ -73,41 +73,46 @@ public class tache {
      * methode permet de recuperer la duree restant sur la fin d'un projet
      * @return
      */
-    public String dureRestant(){
-        String dureeRest="";
+    public String dureeRestante() {
+        String dureeRest = "";
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalDateTime dateAujourdhuit =LocalDateTime.now();
-            Period period = Period.between(dateAujourdhuit.toLocalDate(),duree_estimee.toLocalDate());
+            LocalDateTime dateAujourdhui = LocalDateTime.now();
+            Duration duration = Duration.between(dateAujourdhui, duree_estimee);
 
-            if(period.isNegative()){
-                long heurePasse= ChronoUnit.HOURS.between(duree_estimee,dateAujourdhuit);
-                if(heurePasse<-24)
-                    return "-"+heurePasse+"h";
-                ////////// pour les joure passe
-                return "-"+ChronoUnit.DAYS.between(duree_estimee,dateAujourdhuit)+"j";
-            } else if (period.isZero()) {
-
+            if (duration.isNegative()) {
+                // si la durée est passée
+                long heuresPassees = duration.toHours();
+                if (heuresPassees < -24) {
+                    // si la durée passée est supérieure à 24 heures
+                    return "-" + (-heuresPassees) + "h";
+                } else {
+                    // si la durée passée est inférieure à 24 heures
+                    return "-" + (-duration.toMinutes()) + "min";
+                }
+            } else if (duration.isZero()) {
+                // si la durée est aujourd'hui
                 return "Aujourd'hui";
-
-            } else if (period.getMonths()>0) {
-                if(period.getMonths()>365)
-                    return ""+duree_estimee.toLocalDate();
-                return "+"+ period.getMonths()+" j";
-            } else if (period.getDays()>0) {
-                return "+"+period.getDays()+" h";
-            }else{
-                Duration duration = Duration.between(LocalDateTime.now(),duree_estimee);
+            } else {
+                // si la durée est future
                 long heuresRestantes = duration.toHours();
                 long minutesRestantes = duration.toMinutes() % 60;
-                if(heuresRestantes<0)
-                    return "+"+heuresRestantes+" h";
-                return "+"+minutesRestantes+" min";
+                if (heuresRestantes > 24) {
+                    // si la durée restante est supérieure à 24 heures
+                    return "+" + (heuresRestantes / 24) + "j";
+                } else if (heuresRestantes > 0) {
+                    // si la durée restante est supérieure à 0 heures
+                    return "+" + heuresRestantes + "h";
+                } else {
+                    // si la durée restante est inférieure à 1 heure
+                    return "+" + minutesRestantes + "min";
+                }
             }
         }
 
-        return  dureeRest;
+        return dureeRest;
     }
+
 
 
 }

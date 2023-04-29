@@ -72,7 +72,16 @@ public class afficherTache {
                         JSONObject obj = response.getJSONObject(i);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
-                            ensembleTache.add(new tache(obj.getInt("IDTACHE"),LocalDateTime.parse(obj.getString("DATE_CREATION"),formatter),LocalDateTime.parse(obj.getString("DATE_ECHEANCE"),formatter),LocalDateTime.parse(obj.getString("DUREE_ESTIMEE"),formatter),obj.getString("ETATT"),obj.getString("DECRIPTION"),obj.getInt("SCORE"),obj.getInt("IDPROJ"),obj.getString("NOMEMP")));
+                            LocalDateTime datefin=null;
+                            if (!obj.isNull("DATE_ECHEANCE")) {
+                                datefin = LocalDateTime.parse(obj.getString("DATE_ECHEANCE"), formatter);
+                            }
+                            int score=0;
+                            if(!obj.isNull("SCORE"))
+                                score= obj.getInt("SCORE");
+
+
+                            ensembleTache.add(new tache(obj.getInt("IDTACHE"),LocalDateTime.parse(obj.getString("DATE_CREATION"),formatter),datefin,LocalDateTime.parse(obj.getString("DUREE_ESTIMEE"),formatter),obj.getString("ETATT"),obj.getString("DECRIPTION"),score,obj.getInt("IDPROJ"),obj.getString("NOMEMP")));
                             projetcourant.setNomProj(obj.getString("nomproj"));
                         }
                     }catch (JSONException e){
@@ -101,9 +110,8 @@ public class afficherTache {
             Toast.makeText(context, "Aucun projet n'a été trouvé", Toast.LENGTH_SHORT).show();
         }
 
-
-
     }
+
 
 }
 
