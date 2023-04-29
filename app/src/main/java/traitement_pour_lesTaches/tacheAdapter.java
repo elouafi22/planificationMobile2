@@ -1,6 +1,8 @@
 package traitement_pour_lesTaches;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.planificationmobile2.R;
+import com.example.planificationmobile2.tacheActivity;
 import com.example.planificationmobile2.traitementPourProjet.popupprojet;
 import com.example.planificationmobile2.traitementPourProjet.projet;
 
@@ -88,11 +94,10 @@ public class tacheAdapter extends BaseAdapter {
          * gerer l'evenement de clik sur le boutant valider tache
          */
 
-        validerTache.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "valider projet", Toast.LENGTH_SHORT).show();
-            }
+        validerTache.setOnClickListener(v -> {
+            FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+            RatingDialog.showRateAppDialogNormal(fragmentManager, context, tacheCourant.getIdtache());
+
         });
 
 

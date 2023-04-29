@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="5dp"
+    app:cardCornerRadius="@dimen/dp_20"
+    app:cardElevation="@dimen/dp_5"
 
     app:cardUseCompatPadding="true">
 
-
-
-</androidx.cardview.widget.CardView>
-
-
-<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,17 +20,16 @@
             android:layout_height="@dimen/dp_140"
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/lib_rate"
-            app:lottie_loop="true"
-            tools:ignore="MissingClass" />
+            app:lottie_loop="true" />
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@string/roboto_medium"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:padding="@dimen/dp_5"
-            android:text="@string/dialog_five_star_title"
+            android:text="enjoy"
             android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/cm_sp_17" />
 
@@ -62,14 +54,15 @@
             android:id="@+id/bt_ratingBar"
             style="@style/lib_material_rating_style"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="?dialogPreferredPadding"
-            android:layout_marginEnd="?dialogPreferredPadding"
+            android:layout_height="73dp"
+            android:layout_marginStart="-50dp"
+            android:layout_marginEnd="-50dp"
+            android:contentDescription="Évaluez cet élément de 1 à 5 étoiles"
             android:gravity="center"
             android:numStars="5"
-            android:stepSize="1"
-            android:contentDescription="Évaluez cet élément de 1 à 5 étoiles"
-            />
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:stepSize="1" />
 
         <View
             android:layout_width="match_parent"
@@ -108,12 +101,13 @@
                 android:background="?attr/selectableItemBackground"
                 android:fontFamily="@string/roboto_medium"
                 android:gravity="center"
-                android:padding="@dimen/dp_10"
-                android:text="@string/submits"
+                android:padding="10.66dp"
+                android:text="submit"
                 android:textColor="?android:textColorSecondary"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </LinearLayout>
--->
+
+</androidx.cardview.widget.CardView>

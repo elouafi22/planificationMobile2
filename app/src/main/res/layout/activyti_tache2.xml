@@ -2,35 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".monPlanning" android:layout_width="match_parent">
+    tools:context=".monPlanning">
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:minHeight="70dp" android:layout_width="match_parent">
+        android:minHeight="70dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/fleche_gauche"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/fleche_gauche" />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/fleche_gauche" />
 
         <TextView
             android:id="@+id/nomprojTache"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nom du projet"
-            android:textSize="30sp"
             android:gravity="center"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:text="Nom du projet"
+            android:textSize="30sp" />
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/tache"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
 
 </LinearLayout>
-
