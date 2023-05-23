@@ -23,7 +23,7 @@ public class monPlanning extends AppCompatActivity implements DataRecievedListen
 
         //String url = "http://192.168.1.103:5000/afficherProjet";
         //String url = "http://192.168.42.122:5000/afficherProjet";
-        String url ="http://20.55.44.15:8000/projet";
+        String url ="http://20.55.44.15:8000/afficherProjet";
         //  user u1 = user.gestInstance();
 
         lesprojet = new afficherProjet(this);

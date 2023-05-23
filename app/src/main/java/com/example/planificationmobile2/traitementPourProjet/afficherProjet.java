@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.planificationmobile2.user;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,18 +40,22 @@ public class afficherProjet {
 
         // recuperer la valeur de la cle et onvoyee dans la requete
 
-
+        /*
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
         System.out.println(session_key);
+        */
+        user usercourant = user.gestInstance();
+
         JSONArray donnerenvoyer= new JSONArray();
         JSONObject postData = new JSONObject();
         try {
-            postData.put("session_id",session_key);
+            postData.put("username",usercourant.getNom());
+            postData.put("password",usercourant.getPassword());
             donnerenvoyer.put(postData);
-        } catch (
-                JSONException e) {
-            throw new RuntimeException(e);
+            System.out.println("-------------------------------"+usercourant.getNom()+"---------------------------"+usercourant.getPassword());
+        } catch (JSONException e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
 
