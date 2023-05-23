@@ -62,7 +62,7 @@ public class visualisation extends AppCompatActivity {
         list = new ArrayList<>();
         Templist = new ArrayList<>();
        // urlTache = "http://20.55.44.15:8000/getTaches";
-        urlTache="http://192.168.1.103:5000/getTaches";
+        urlTache="http://192.168.1.103:5000/getTachesdate";
 
         recyclerView = findViewById(R.id.recyclerView);
 
