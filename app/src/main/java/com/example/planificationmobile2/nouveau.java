@@ -28,8 +28,8 @@ public class nouveau extends AppCompatActivity {
 
 
     //String url = "http://192.168.1.105:5000/ajouterProjet";
-    String url = "http://localhost:5000/ajouterProjet"; // <<-- need to be created
-    //String url = "http://20.55.44.15:5000/ajouterProjet";
+   // String url = "http://localhost:5000/ajouterProjet"; // <<-- need to be created
+    String url = "http://20.55.44.15:8000/ajouterProjet";
 
     TextInputLayout ProjetName , DescriptionProjet;
     DatePicker dateDebut, dateFin;

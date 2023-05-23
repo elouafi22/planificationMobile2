@@ -25,7 +25,8 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
         setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activyti_tache2);
 
-        String url = "http://192.168.1.103:5000/affichertachechef";
+       // String url = "http://192.168.1.103:5000/affichertachechef";
+        String url="http://20.55.44.15:8000/affichertachechef";
 
         nomproj = findViewById(R.id.nomprojTache);
 

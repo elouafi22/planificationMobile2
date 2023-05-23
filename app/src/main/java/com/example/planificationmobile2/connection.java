@@ -21,8 +21,9 @@ public class connection {
     //private static String url = "http://100.71.33.221:5000/authentification";
 
     //private static String url = "http://192.168.1.105:5000/authentification";
-    // private static String url ="http://20.55.44.15:8000/";
-    private static String url = "http://192.168.1.103:5000/authentification";
+     private static String url ="http://20.55.44.15:8000/";
+   // private static String url = "http://192.168.1.103:5000/authentification";
+    // private static  String url="http://192.168.42.122:5000/authentification";
     public static void get_connection(Context context, String username ,String password){
         JSONObject postData = new JSONObject();
         try {
