@@ -128,7 +128,7 @@ public class tache extends AppCompatActivity {
                 String descriptionTache = tache.this.descriptionTache.getEditText().getText().toString();
                 String dateEstimation = tache.this.dateEstimation.getText().toString();
                 String listPersonne = tache.this.listPersonne.getText().toString();
-                String listMateriel = tache.this.listMateriel.getText().toString();
+                String listMateriel = tache.this.listMateriel.getText().toString(); // sous forme de string separer par des virgules
                 String listprojet = tache.this.listprojet.getText().toString();
 
                 Toast.makeText(tache.this,"Tache " + nomTache + " " + descriptionTache + " " + dateEstimation + " " + listPersonne + " " + listMateriel + " " + listprojet, Toast.LENGTH_SHORT).show();
@@ -178,7 +178,7 @@ public class tache extends AppCompatActivity {
 
         listprojet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // code in {...} will be executed when the user clicks on an item from the list
-
+            /* 
             {
                 projets = new String[20];
                 for (int i = 0; i < 20;i++)
@@ -186,8 +186,8 @@ public class tache extends AppCompatActivity {
                 adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.listprojet, projets);
                 listprojet.setAdapter(adapter);
             }
-
-            /*
+            */
+            
             { 
                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 String session_key = sharedPreferences.getString("session_key", "");
@@ -238,7 +238,7 @@ public class tache extends AppCompatActivity {
 
                 });
             }
-            */
+            
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String var_projet = adapterView.getItemAtPosition(i).toString();
@@ -251,14 +251,14 @@ public class tache extends AppCompatActivity {
         //String[] personnes ;
         //boolean[] selectedPersonne;
         //ArrayList<Integer> PersonneArray = new ArrayList<>();
-
+        /* 
         // test
         personnes = new String[20];
         for (int i = 0; i < 20;i++)
             personnes[i] = "Personne " + i;
 
-
-        /*
+        */
+        
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
 
@@ -304,11 +304,11 @@ public class tache extends AppCompatActivity {
 
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jonrequestPersonne);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //requestQueue.add(jonrequestPersonne);
 
 
-         */
+         
         selectedPersonne = new boolean[personnes.length];
 
         listPersonne.setOnClickListener(new View.OnClickListener() {
@@ -398,12 +398,13 @@ public class tache extends AppCompatActivity {
         //boolean[] selectedMateriel;
         //ArrayList<Integer> MaterielArray = new ArrayList<>();
         // test
-
+        /* 
         materiels = new String[20];
         for (int i = 0; i < 20;i++)
             materiels[i] = "materiel " + i;
 
-        /*
+        */
+        
         JsonObjectRequest jonrequestMateriel = new JsonObjectRequest(Request.Method.POST, urlMatreriel, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -414,7 +415,7 @@ public class tache extends AppCompatActivity {
                         materiels = new String[response.getJSONArray("materiels").length()];
                         for (int i = 0; i < response.getJSONArray("materiels").length(); i++) {
                             JSONObject materiel = response.getJSONArray("materiels").getJSONObject(i);
-                            String name = materiel.getString("NOMP");
+                            String name = materiel.getString("NOMM");
                             materiels[i] = name;
                         }
 
@@ -433,8 +434,8 @@ public class tache extends AppCompatActivity {
 
         });
 
-        requestQueue.add(jonrequestMateriel);
-        */
+        //requestQueue.add(jonrequestMateriel);
+        
 
         selectedMateriel = new boolean[materiels.length];
 
