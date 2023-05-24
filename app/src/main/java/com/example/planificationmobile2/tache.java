@@ -287,6 +287,7 @@ public class tache extends AppCompatActivity {
                             JSONObject personne = response.getJSONArray("personnes").getJSONObject(i);
                             String name = personne.getString("NOMP");
                             personnes[i] = name;
+                            System.out.println(name);
                         }
 
                     } else {
