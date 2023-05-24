@@ -155,7 +155,20 @@ public class tache extends AppCompatActivity {
                 JsonObjectRequest jonrequest = new JsonObjectRequest(Request.Method.POST, urlTache, jsonTache, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(tache.this, "Tache ajouter avec succes", Toast.LENGTH_SHORT).show();
+                        try {
+                            String message = response.getString("message");
+                            if (message.equals("success")) {
+                                Toast.makeText(tache.this, "Tache ajouter avec succes", Toast.LENGTH_SHORT).show();
+                                Intent myActiviter = new Intent(getApplicationContext(),visualisation.class);
+                                startActivity(myActiviter);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Erreur lors de la création du projet", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
