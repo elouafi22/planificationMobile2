@@ -138,6 +138,7 @@
             android:background="#007FAC"
             android:onClick="annuler"
             android:text="Annuler"
+            android:backgroundTint="#007FAC"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -150,6 +151,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:background="#007FAC"
+            android:backgroundTint="#007FAC"
             android:onClick="creer"
             android:text="Creer"
             android:textColor="@color/white"
