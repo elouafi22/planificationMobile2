@@ -80,8 +80,8 @@ public class nouveau extends AppCompatActivity {
             jsonObject.put("password",user1.getPassword());
             jsonObject.put("name", ProjetName.getEditText().getText().toString().trim());
             jsonObject.put("description", DescriptionProjet.getEditText().getText().toString().trim());
-            jsonObject.put("dateDeb", dateDebut.getYear() + "-" + dateDebut.getMonth() + "-" + dateDebut.getDayOfMonth());
-            jsonObject.put("dateFin", dateFin.getYear() + "-" + dateFin.getMonth() + "-" + dateFin.getDayOfMonth());
+            jsonObject.put("dateDeb", dateDebut.getDayOfMonth() + "/" + dateDebut.getMonth() + "/" + dateDebut.getYear() );
+            jsonObject.put("dateFin", dateFin.getDayOfMonth() + "/" + dateFin.getMonth() + "/" + dateFin.getYear());
         } catch (Exception e) {
             e.printStackTrace();
         }
