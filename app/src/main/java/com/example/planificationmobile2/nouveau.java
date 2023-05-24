@@ -63,9 +63,13 @@ public class nouveau extends AppCompatActivity {
      * validation du form pour creer un nouveau projet
      */
     private void creer() {
-        if (!validateNameProjet() || !validateDescriptionProjet() || !validateDebutDate() || !validateFinDate()) {
+
+        if ((validateNameProjet()==false) || (validateDescriptionProjet()==false) || (validateDebutDate()==false) || (validateFinDate()==false)) {
+            System.out.println("valeur non valide ");
             return;
         }
+
+
         // make json object with value of form and send it to the server flask
 
         user user1 = user.gestInstance();
@@ -86,6 +90,7 @@ public class nouveau extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        System.out.println("---------------------------------------------------------- pdkdkdkdk");
 
         // envoie de la requete au serveur flask
 
@@ -132,6 +137,7 @@ public class nouveau extends AppCompatActivity {
 
     private boolean validateNameProjet() {
         String val = ProjetName.getEditText().getText().toString().trim();
+        System.out.println(val);
         if (val.isEmpty()) {
             ProjetName.setError("Le champ ne peut pas être vide");
             return false;
@@ -152,6 +158,7 @@ public class nouveau extends AppCompatActivity {
 
     private boolean validateDescriptionProjet() {
         String val = DescriptionProjet.getEditText().getText().toString().trim();
+        System.out.println(val);
         if (val.isEmpty()) {
             DescriptionProjet.setError("Le champ ne peut pas être vide");
             return false;
@@ -199,7 +206,7 @@ public class nouveau extends AppCompatActivity {
         } else {
             return true;
         }
-        return false; // TODO: 2021-05-03
+       return true; // TODO: 2021-05-03
     }
 
     private boolean validateFinDate() {
@@ -221,7 +228,7 @@ public class nouveau extends AppCompatActivity {
         } else {
             return true;
         }
-        return false; // TODO: 2021-05-03
+        return true; // TODO: 2021-05-03
     }
 
     // onKeyBack is for back button in android

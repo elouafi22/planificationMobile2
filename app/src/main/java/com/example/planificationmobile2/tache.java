@@ -42,8 +42,8 @@ import com.google.android.material.textfield.TextInputLayout;
 public class tache extends AppCompatActivity {
 
     static private String urlProjet = "http://20.55.44.15:8000/afficherProjetDeTache";
-    static private String urlPersonne = "http://20.55.44.15:8000/affichePersonner/";
-    static private String urlMatreriel = "http://20.55.44.15:8000/afficheMateriel/";
+    static private String urlPersonne = "http://20.55.44.15:8000/affichePersonner";
+    static private String urlMatreriel = "http://20.55.44.15:8000/afficheMateriel";
     static private String urlTache = "http://20.55.44.15:8000/ajouterTache";
 
 
@@ -164,9 +164,17 @@ public class tache extends AppCompatActivity {
                     }
                 });
 
+                // Instantiate the RequestQueue.
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+                // Add the request to the RequestQueue.
+                queue.add(jonrequest);
+
                 
             }
         });
+
+
 
 
 
@@ -260,11 +268,13 @@ public class tache extends AppCompatActivity {
             personnes[i] = "Personne " + i;
 
         */
-        
+
+        /*
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
 
-        user user1 = user.gestInstance();
+         */
+//        user user1 = user.gestInstance();
 
         JSONObject jsonObject = new JSONObject();
         
