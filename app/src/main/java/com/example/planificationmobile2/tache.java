@@ -289,7 +289,7 @@ public class tache extends AppCompatActivity {
                             personnes[i] = name;
                             System.out.println(name);
                         }
-
+                        selectedPersonne = new boolean[personnes.length];
                     } else {
                         Toast.makeText(getApplicationContext(), "Erreur a la base donner", Toast.LENGTH_SHORT).show();
                     }
@@ -310,7 +310,7 @@ public class tache extends AppCompatActivity {
 
 
          
-        selectedPersonne = new boolean[personnes.length];
+ 
 
         listPersonne.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -419,6 +419,7 @@ public class tache extends AppCompatActivity {
                             String name = materiel.getString("NOMM");
                             materiels[i] = name;
                         }
+                        selectedMateriel = new boolean[materiels.length];
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Erreur a la base donner", Toast.LENGTH_SHORT).show();
@@ -438,7 +439,7 @@ public class tache extends AppCompatActivity {
         //requestQueue.add(jonrequestMateriel);
         
 
-        selectedMateriel = new boolean[materiels.length];
+
 
         listMateriel.setOnClickListener(new View.OnClickListener() {
             @Override

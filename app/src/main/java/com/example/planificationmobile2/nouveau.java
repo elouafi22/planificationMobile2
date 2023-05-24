@@ -147,6 +147,7 @@ public class nouveau extends AppCompatActivity {
             ProjetName.setErrorEnabled(false);
             return true;
         }
+        
     }
 
     private boolean validateDescriptionProjet() {
