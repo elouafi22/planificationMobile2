@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.planificationmobile2.user;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -36,13 +37,18 @@ public class graph {
     public void afficherGraph(Context context, String url,BarChart barChart,String reponce){
 
         /* récupérer la valeur de la clé et l'envoyer dans la requête */
+        /*
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
-        System.out.println(session_key);
+
+         */
+
         JSONArray donnerenvoyer= new JSONArray();
         JSONObject postData = new JSONObject();
+        user username = user.gestInstance();
         try {
-            postData.put("session_id",session_key);
+            postData.put("username",username.getNom());
+            postData.put("password",username.getPassword());
             postData.put("query",reponce);
             donnerenvoyer.put(postData);
         } catch (JSONException e) {

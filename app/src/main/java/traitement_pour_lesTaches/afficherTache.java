@@ -40,10 +40,11 @@ public class afficherTache {
 
         // recuperer la valeur de la cle et onvoyee dans la requete
 
-
+        /*
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
-        System.out.println(session_key);
+        */
+
         JSONArray donnerenvoyer= new JSONArray();
         JSONObject postData = new JSONObject();
         projetRf projetcourant = projetRf.getInstance();
@@ -52,7 +53,8 @@ public class afficherTache {
         user usercourant = user.gestInstance();
 
         try {
-            postData.put("session_id",session_key);
+            postData.put("username",usercourant.getNom());
+            postData.put("password",usercourant.getPassword());
             postData.put("idproj",projetcourant.getidproj());
             postData.put("ischef",usercourant.getVerifierchef());
             donnerenvoyer.put(postData);

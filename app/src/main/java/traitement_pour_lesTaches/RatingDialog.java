@@ -53,7 +53,7 @@ public class RatingDialog extends DialogFragment implements RatingBar.OnRatingBa
     private static final String PREF_KEY_APP_LAUNCH_COUNT = "app_launch_count";
     public static String EMAIL_FEEDBACK = "";
 
-    public static String url = "http://192.168.1.103:5000/ratetache";
+    public static String url = "http://20.55.44.15:8000/ratetache";
     public static int score=0;
 
     private static int id_tache;
@@ -85,15 +85,16 @@ public class RatingDialog extends DialogFragment implements RatingBar.OnRatingBa
 
 
     public static void rateTache(Context context,int score){
-
+        /*
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String session_key = sharedPreferences.getString("session_key", "");
-        System.out.println(session_key);
+         */
         JSONObject postData = new JSONObject();
-
+        user usercourant =user.gestInstance();
 
         try {
-            postData.put("session_id",session_key);
+            postData.put("username",usercourant.getNom());
+            postData.put("password",usercourant.getPassword());
             postData.put("id_tache",id_tache);
             postData.put("scoreval",score);
         } catch (
