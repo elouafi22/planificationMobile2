@@ -173,8 +173,59 @@ public class tache extends AppCompatActivity {
         // test
         // list du projet
 
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            String session_key = sharedPreferences.getString("session_key", "");
 
+            user user1 = user.gestInstance();
 
+            JSONObject jsonprojet = new JSONObject();
+            
+                try {
+                    jsonprojet.put("session_key", session_key);
+                    jsonprojet.put("username",user1.getNom());
+                    jsonprojet.put("password",user1.getPassword());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            
+
+            JsonObjectRequest jonrequest = new JsonObjectRequest(Request.Method.POST, urlProjet, jsonprojet, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String message = response.getString("message");
+                        if (message.equals("success")) {
+                            // add list name projet to projets
+                            projets = new String[response.getJSONArray("projets").length()];
+                            for (int i = 0; i < response.getJSONArray("projets").length(); i++) {
+                                JSONObject projet = response.getJSONArray("projets").getJSONObject(i);
+                                String name = projet.getString("NOMPROJ");
+                                projets[i] = name;
+                            }
+
+                            adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listprojet, projets);
+
+                            listprojet.setAdapter(adapter);
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Erreur a la base donner", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Erreur de projet", Toast.LENGTH_SHORT).show();
+                }
+
+            });
+
+            requestQueue.add(jonrequest);
+        
 
         listprojet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // code in {...} will be executed when the user clicks on an item from the list
@@ -188,56 +239,7 @@ public class tache extends AppCompatActivity {
             }
             */
             
-            { 
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-                String session_key = sharedPreferences.getString("session_key", "");
 
-                user user1 = user.gestInstance();
-
-                JSONObject jsonprojet = new JSONObject();
-                
-                    try {
-                        jsonprojet.put("session_key", session_key);
-                        jsonprojet.put("username",user1.getNom());
-                        jsonprojet.put("password",user1.getPassword());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                
-
-                JsonObjectRequest jonrequest = new JsonObjectRequest(Request.Method.POST, urlProjet, jsonprojet, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String message = response.getString("message");
-                            if (message.equals("success")) {
-                                // add list name projet to projets
-                                projets = new String[response.getJSONArray("projets").length()];
-                                for (int i = 0; i < response.getJSONArray("projets").length(); i++) {
-                                    JSONObject projet = response.getJSONArray("projets").getJSONObject(i);
-                                    String name = projet.getString("NOMPROJ");
-                                    projets[i] = name;
-                                }
-
-                                adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listprojet, projets);
-
-                                listprojet.setAdapter(adapter);
-
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Erreur a la base donner", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Erreur de projet", Toast.LENGTH_SHORT).show();
-                    }
-
-                });
-            }
             
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -304,9 +306,12 @@ public class tache extends AppCompatActivity {
             }
 
         });
+        
 
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //requestQueue.add(jonrequestPersonne);
+
+        //
+        requestQueue.add(jonrequestPersonne);
+
 
 
          
@@ -436,7 +441,7 @@ public class tache extends AppCompatActivity {
 
         });
 
-        //requestQueue.add(jonrequestMateriel);
+        requestQueue.add(jonrequestMateriel);
         
 
 
