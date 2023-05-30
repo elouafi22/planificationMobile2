@@ -36,11 +36,22 @@ public class MainActivityClient extends AppCompatActivity {
         btn_reclamation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                envouyerEmail();
+                /*
                 Intent nouveau = new Intent(getApplicationContext(),reclamationActivity.class);
                 startActivity(nouveau);
                 finish();
+
+                 */
             }
         });
+
+    }
+
+    private void envouyerEmail(){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent,"choisir une boite email"));
 
     }
 }

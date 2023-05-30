@@ -102,13 +102,14 @@
             android:textSize="18sp"
             android:layout_marginTop="18dp"
             android:layout_gravity="center" />
+
         <DatePicker
+            android:id="@+id/dateFinPickerProjet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="192dp"
+            android:layout_marginTop="20dp"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
-            android:layout_marginTop="20dp"
-            android:id="@+id/dateFinPickerProjet"
             android:spinnersShown="true"
 
             />
@@ -132,13 +133,12 @@
             android:id="@+id/annuler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_weight="1"
             android:background="#007FAC"
             android:onClick="annuler"
             android:text="Annuler"
-            android:backgroundTint="#007FAC"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -151,7 +151,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:background="#007FAC"
-            android:backgroundTint="#007FAC"
             android:onClick="creer"
             android:text="Creer"
             android:textColor="@color/white"
