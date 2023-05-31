@@ -157,13 +157,16 @@ public class tache extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String message = response.getString("message");
+                            System.out.println("-------------------------------------------------------------"+message);
                             if (message.equals("success")) {
                                 Toast.makeText(tache.this, "Tache ajouter avec succes", Toast.LENGTH_SHORT).show();
                                 Intent myActiviter = new Intent(getApplicationContext(),visualisation.class);
                                 startActivity(myActiviter);
                                 finish();
+                            } else if (message.equals("tacheExiste")) {
+                                Toast.makeText(getApplicationContext(), "ce nom de projet existe choisir un nouveau nom", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Erreur lors de la création du projet", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Erreur lors de la création du la tache", Toast.LENGTH_SHORT).show();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

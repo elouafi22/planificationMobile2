@@ -103,6 +103,8 @@ public class nouveau extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), monPlanning.class);
                         startActivity(intent);
                         finish();
+                    } else if (message.equals("projetExiste")) {
+                        Toast.makeText(getApplicationContext(), "ce nom de projet existe deja choisir un nouveau nom", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Erreur lors de la création du projet", Toast.LENGTH_SHORT).show();
                     }
