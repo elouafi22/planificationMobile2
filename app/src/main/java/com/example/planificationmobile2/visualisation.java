@@ -38,6 +38,7 @@ import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,7 +63,7 @@ public class visualisation extends AppCompatActivity {
         list = new ArrayList<>();
         Templist = new ArrayList<>();
        // urlTache = "http://20.55.44.15:8000/getTaches";
-        urlTache="http://192.168.1.103:5000/getTachesdate";
+        urlTache="http://20.55.44.15:8000/getTachesdate";
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -110,11 +111,17 @@ public class visualisation extends AppCompatActivity {
                             JSONObject tache = response.getJSONArray("taches").getJSONObject(i);
                             //TimeStamp timeStamp = new TimeStamp(tache.getString("date_creation"));
 
-                            Calendar date = Calendar.getInstance();
+
+                          //  Calendar date = Calendar.getInstance();
                             // Class Date is deprecated but it's the only way to convert String to Date return class Date date of format yyyy-MM-dd
                             //date.setTime(new Date(tache.getString("date")));
                             
-                            date.setTimeInMillis(Integer.parseInt(tache.getString("DATE_CREATION") )); // convert timestamp to calendar
+                         //   date.setTimeInMillis(Integer.parseInt(tache.getString("DATE_CREATION") )); // convert timestamp to calendar
+
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z");
+                            Date parsedDate = dateFormat.parse(tache.getString("DATE_CREATION"));
+                            Calendar date = Calendar.getInstance();
+                            date.setTime(parsedDate);
                             // time of task (HH:mm)
                             //String timedate = tache.getString("heure_minute"); // <-- new champ (heure_minute) on table tache
                             //Calendar calendar = Calendar.getInstance();
@@ -123,6 +130,7 @@ public class visualisation extends AppCompatActivity {
                             // ajouter le tache on list de Task pour afficher dans le recycler view
                             list.add(new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date));
                             collapsibleCalendar.addEventTag(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
+
                             if ( ( date.get(Calendar.DAY_OF_MONTH) == datePicker.getDayOfMonth() )
                                     && ( date.get(Calendar.MONTH) == datePicker.getMonth() )
                                     && ( date.get(Calendar.YEAR) == datePicker.getYear() ) )
@@ -137,6 +145,8 @@ public class visualisation extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "error de server de la base donner", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
@@ -184,7 +194,6 @@ public class visualisation extends AppCompatActivity {
             @Override
             public void onDayChanged() {
 
-
             }
 
             /**
@@ -202,10 +211,9 @@ public class visualisation extends AppCompatActivity {
                 Log.i(getClass().getName(), "Selected Day: "
                         + day.getYear() + "/" + (day.getMonth() + 1) + "/" + day.getDay());
                 // add task below calendar recycler view
-
                 Templist.clear(); // clear list
 
-
+                System.out.println(list);
                 for (int i = 0; i < list.size(); i++) {
                     Task tache = list.get(i);
                     Calendar date = tache.getDueDate();
@@ -215,6 +223,9 @@ public class visualisation extends AppCompatActivity {
                 }
 
                 // show list of task in current day
+                System.out.println("-------------------------------------------------------------------");
+                System.out.println(Templist);
+
                 recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
 
 
