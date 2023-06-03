@@ -82,5 +82,13 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
     }
 
  */
+    // onKeyBack is for back button in android
+    @Override
+    public void onBackPressed() {  // back button pressed in android device in previous activity
+        Intent nouveau = new Intent(getApplicationContext(),home.class);
+        startActivity(nouveau);
+        finish();
+
+    }
 }
 
