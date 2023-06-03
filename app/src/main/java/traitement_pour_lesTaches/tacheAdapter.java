@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.planificationmobile2.MainActivityClient;
 import com.example.planificationmobile2.R;
 import com.example.planificationmobile2.tacheActivity;
 import com.example.planificationmobile2.traitementPourProjet.popupprojet;
@@ -58,6 +59,7 @@ public class tacheAdapter extends BaseAdapter {
         /**
          * recuperation des item depuit la vue
          */
+        TextView nomtache =view.findViewById(R.id.nomtache2);
         TextView descriptionTache = view.findViewById(R.id.descriptiontache);
         TextView dureeRestant =view.findViewById(R.id.durerestanttache);
         TextView statusTache = view.findViewById(R.id.statuttache);
@@ -66,6 +68,7 @@ public class tacheAdapter extends BaseAdapter {
         /**
          * ajouter le contunue des tache dans les items
          */
+        nomtache.setText(tacheCourant.getNomTache());
         String etat=tacheCourant.getEtat();
         descriptionTache.setText(tacheCourant.getDescription());
         statusTache.setText(etat);
@@ -97,11 +100,16 @@ public class tacheAdapter extends BaseAdapter {
             validerTache.setOnClickListener(v -> {
                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                 RatingDialog.showRateAppDialogNormal(fragmentManager, context, tacheCourant.getIdtache());
-
+                System.out.println("-----------------------------------------rate tache-");
             });
 
         return view;
     }
+
+    public void updateTaskList() {
+        notifyDataSetChanged();
+    }
+
 
 
 

@@ -132,6 +132,7 @@ public class tache extends AppCompatActivity {
                 String listprojet = tache.this.listprojet.getText().toString();
 
                 Toast.makeText(tache.this,"Tache " + nomTache + " " + descriptionTache + " " + dateEstimation + " " + listPersonne + " " + listMateriel + " " + listprojet, Toast.LENGTH_SHORT).show();
+                System.out.println("-------------"+dateEstimation);
 
                 // send json to server flask
 

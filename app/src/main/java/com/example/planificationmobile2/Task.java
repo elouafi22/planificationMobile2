@@ -1,5 +1,6 @@
 package com.example.planificationmobile2;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -47,4 +48,11 @@ public class Task {
     public void setDueDate(Calendar dueDate) {
         this.dueDate = dueDate;
     }
+
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(this.dueDate.getTime());
+        return this.getTitle() + "::" + this.getDescription() + "::" + formattedDate;
+    }
+
 }

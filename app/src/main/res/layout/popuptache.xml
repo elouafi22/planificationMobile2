@@ -29,20 +29,9 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:padding="@dimen/dp_5"
-            android:text="enjoy"
+            android:text="Évaluez cette tache de 1 à 5 étoiles"
             android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/cm_sp_17" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/cm_dp_3"
-            android:fontFamily="@string/roboto_regular"
-            android:gravity="center"
-            android:padding="@dimen/dp_5"
-            android:text="@string/rate_tips"
-            android:textColor="?android:textColorSecondary"
-            android:textSize="@dimen/cm_sp_14" />
 
         <View
             android:layout_width="match_parent"

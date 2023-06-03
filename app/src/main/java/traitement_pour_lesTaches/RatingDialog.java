@@ -109,7 +109,7 @@ public class RatingDialog extends DialogFragment implements RatingBar.OnRatingBa
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            System.out.println(response.getString("etat"));
+                            System.out.println(response.getString("----------------------------------------etat"));
                         } catch (JSONException e) {
                             Toast.makeText(context,e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -152,7 +152,7 @@ public class RatingDialog extends DialogFragment implements RatingBar.OnRatingBa
         TextView rateButton = view.findViewById(R.id.bt_ratingSend);
         rateButton.setOnClickListener(v -> Toast.makeText(getActivity(), R.string.select_5_star_rating, Toast.LENGTH_SHORT).show());
 
-        String title = String.format(view.getContext().getString(R.string.dialog_five_star_title), view.getContext().getString(R.string.app_name));
+        String title = "Évaluez cette tache de 1 à 5 étoiles";
         TextView tv_title = view.findViewById(R.id.tv_title);
         tv_title.setText(title);
 

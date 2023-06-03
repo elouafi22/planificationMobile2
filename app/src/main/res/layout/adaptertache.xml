@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/descriptiontache"
+                    android:id="@+id/nomtache2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Full house"
@@ -37,11 +37,29 @@
                     android:layout_weight="1"
                     android:textColor="@android:color/black"/>
 
+
                 <ImageView
                     android:id="@+id/validerTache"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/finirtache"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/descriptiontache"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Full house"
+                    android:singleLine="true"
+                    android:textSize="17sp"
+                    android:layout_weight="1"
+                    android:alpha="0.5"
+                    android:textColor="@android:color/black"/>
 
             </LinearLayout>
 

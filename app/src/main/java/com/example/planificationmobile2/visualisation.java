@@ -115,7 +115,7 @@ public class visualisation extends AppCompatActivity {
                           //  Calendar date = Calendar.getInstance();
                             // Class Date is deprecated but it's the only way to convert String to Date return class Date date of format yyyy-MM-dd
                             //date.setTime(new Date(tache.getString("date")));
-                            
+
                          //   date.setTimeInMillis(Integer.parseInt(tache.getString("DATE_CREATION") )); // convert timestamp to calendar
 
                             SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z");
@@ -133,8 +133,12 @@ public class visualisation extends AppCompatActivity {
 
                             if ( ( date.get(Calendar.DAY_OF_MONTH) == datePicker.getDayOfMonth() )
                                     && ( date.get(Calendar.MONTH) == datePicker.getMonth() )
-                                    && ( date.get(Calendar.YEAR) == datePicker.getYear() ) )
-                                Templist.add(new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date));
+                                    && ( date.get(Calendar.YEAR) == datePicker.getYear() ) ){
+                                Task task=new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date);
+                                System.out.println(task);
+                                Templist.add(task);
+                            }
+
 
                         }
                         // show list of task in current day
@@ -157,14 +161,16 @@ public class visualisation extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Erreur de connexion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Erreur de connexion"+error.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(jsonObjectRequest);
-         
+
+
+
 
          /*
         // test list
@@ -213,7 +219,6 @@ public class visualisation extends AppCompatActivity {
                 // add task below calendar recycler view
                 Templist.clear(); // clear list
 
-                System.out.println(list);
                 for (int i = 0; i < list.size(); i++) {
                     Task tache = list.get(i);
                     Calendar date = tache.getDueDate();
@@ -223,14 +228,12 @@ public class visualisation extends AppCompatActivity {
                 }
 
                 // show list of task in current day
-                System.out.println("-------------------------------------------------------------------");
-                System.out.println(Templist);
+                System.out.println("---------------------------templist----------------------------------------");
 
                 recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
-
-
-
             }
+
+
 
             @Override
             public void onItemClick(View view) {
