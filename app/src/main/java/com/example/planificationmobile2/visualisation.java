@@ -35,6 +35,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shrikanthravi.collapsiblecalendarview.data.Day;
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,6 +56,8 @@ public class visualisation extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private FloatingActionButton fab;
+
+    JSONArray Mytache;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,8 @@ public class visualisation extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
 
         collapsibleCalendar = findViewById(R.id.calendarView);
+
+
 
         // button + to create new task
         fab = findViewById(R.id.creetache);
@@ -98,6 +103,41 @@ public class visualisation extends AppCompatActivity {
         } catch (JSONException e) {
            e.printStackTrace();
         }
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        // Define a listener to be notified when the request is completed
+        RequestCompletedListener requestCompletedListener = new RequestCompletedListener() {
+            @Override
+            public void onRequestCompleted() throws JSONException, ParseException {
+                // The request has completed, do something here
+                DatePicker datePicker = new DatePicker(getApplicationContext());
+                for (int i = 0; i < Mytache.length(); i++) {
+                    JSONObject tache = Mytache.getJSONObject(i);
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z");
+                    Date parsedDate = dateFormat.parse(tache.getString("DATE_CREATION"));
+                    Calendar date = Calendar.getInstance();
+                    date.setTime(parsedDate);
+
+                    // ajouter le tache on list de Task pour afficher dans le recycler view
+                    list.add(new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date));
+                    collapsibleCalendar.addEventTag(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
+
+                    if ( ( date.get(Calendar.DAY_OF_MONTH) == datePicker.getDayOfMonth() )
+                            && ( date.get(Calendar.MONTH) == datePicker.getMonth() )
+                            && ( date.get(Calendar.YEAR) == datePicker.getYear() ) ){
+                        Task task=new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date);
+                        System.out.println(task);
+                        Templist.add(task);
+                    }
+
+
+                }
+                // show list of task in current day
+                recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
+
+            }
+        };
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlTache, jsonObject, new Response.Listener<JSONObject>() {
             @Override
@@ -105,8 +145,12 @@ public class visualisation extends AppCompatActivity {
                 try {
                     String status = response.getString("status");
                     if (status.equals("success")) {
-                        DatePicker datePicker = new DatePicker(getApplicationContext());
+                        //DatePicker datePicker = new DatePicker(getApplicationContext());
+
                         // ajouet le tache on list de Task
+                        Mytache = response.getJSONArray("taches");
+
+                        /*
                         for (int i = 0; i < response.getJSONArray("taches").length(); i++) {
                             JSONObject tache = response.getJSONArray("taches").getJSONObject(i);
                             //TimeStamp timeStamp = new TimeStamp(tache.getString("date_creation"));
@@ -143,6 +187,10 @@ public class visualisation extends AppCompatActivity {
                         }
                         // show list of task in current day
                         recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
+                        */
+
+                        // Notify the listener that the request has completed
+                        requestCompletedListener.onRequestCompleted();
 
 
                     } else {
@@ -161,12 +209,14 @@ public class visualisation extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Erreur de connexion"+error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Erreur de connexion : "+error.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+
+
         requestQueue.add(jsonObjectRequest);
 
 
@@ -308,4 +358,9 @@ public class visualisation extends AppCompatActivity {
     }
 
 
+}
+
+// Define the RequestCompletedListener interface
+interface RequestCompletedListener {
+    void onRequestCompleted() throws JSONException, ParseException;
 }

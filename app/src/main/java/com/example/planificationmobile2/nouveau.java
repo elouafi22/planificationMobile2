@@ -3,6 +3,7 @@ package com.example.planificationmobile2;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,6 +58,11 @@ public class nouveau extends AppCompatActivity {
 
         btnCreerProjet.setOnClickListener(v -> creer());
         btnAnnulerProjet.setOnClickListener(v -> annuler());
+
+        btnCreerProjet.setBackgroundColor(Color.parseColor("#007FAC"));
+        btnCreerProjet.setTextColor(Color.WHITE);
+        btnAnnulerProjet.setBackgroundColor(Color.parseColor("#007FAC"));
+        btnAnnulerProjet.setTextColor(Color.WHITE);
     }
 
     /**
