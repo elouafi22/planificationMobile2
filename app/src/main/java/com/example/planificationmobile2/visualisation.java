@@ -110,10 +110,11 @@ public class visualisation extends AppCompatActivity {
             @Override
             public void onRequestCompleted() throws JSONException, ParseException {
                 // The request has completed, do something here
+
                 DatePicker datePicker = new DatePicker(getApplicationContext());
                 for (int i = 0; i < Mytache.length(); i++) {
                     JSONObject tache = Mytache.getJSONObject(i);
-
+                    Toast.makeText(getApplicationContext(),tache.toString() , Toast.LENGTH_SHORT).show();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z");
                     Date parsedDate = dateFormat.parse(tache.getString("DATE_CREATION"));
                     Calendar date = Calendar.getInstance();
@@ -122,6 +123,8 @@ public class visualisation extends AppCompatActivity {
                     // ajouter le tache on list de Task pour afficher dans le recycler view
                     list.add(new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date));
                     collapsibleCalendar.addEventTag(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
+
+
 
                     if ( ( date.get(Calendar.DAY_OF_MONTH) == datePicker.getDayOfMonth() )
                             && ( date.get(Calendar.MONTH) == datePicker.getMonth() )
