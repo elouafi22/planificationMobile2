@@ -115,7 +115,7 @@ public class visualisation extends AppCompatActivity {
                 DatePicker datePicker = new DatePicker(getApplicationContext());
                 for (int i = 0; i < Mytache.length(); i++) {
                     JSONObject tache = Mytache.getJSONObject(i);
-                    Toast.makeText(getApplicationContext(),tache.toString() , Toast.LENGTH_SHORT).show();
+
                     SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z", Locale.US);
                     Date parsedDate = dateFormat.parse(tache.getString("DATE_CREATION"));
                     Calendar date = Calendar.getInstance();
@@ -149,49 +149,9 @@ public class visualisation extends AppCompatActivity {
                 try {
                     String status = response.getString("status");
                     if (status.equals("success")) {
-                        //DatePicker datePicker = new DatePicker(getApplicationContext());
 
                         // ajouet le tache on list de Task
                         Mytache = response.getJSONArray("taches");
-
-                        /*
-                        for (int i = 0; i < response.getJSONArray("taches").length(); i++) {
-                            JSONObject tache = response.getJSONArray("taches").getJSONObject(i);
-                            //TimeStamp timeStamp = new TimeStamp(tache.getString("date_creation"));
-
-
-                          //  Calendar date = Calendar.getInstance();
-                            // Class Date is deprecated but it's the only way to convert String to Date return class Date date of format yyyy-MM-dd
-                            //date.setTime(new Date(tache.getString("date")));
-
-                         //   date.setTimeInMillis(Integer.parseInt(tache.getString("DATE_CREATION") )); // convert timestamp to calendar
-
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z");
-                            Date parsedDate = dateFormat.parse(tache.getString("DATE_CREATION"));
-                            Calendar date = Calendar.getInstance();
-                            date.setTime(parsedDate);
-                            // time of task (HH:mm)
-                            //String timedate = tache.getString("heure_minute"); // <-- new champ (heure_minute) on table tache
-                            //Calendar calendar = Calendar.getInstance();
-                            //calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timedate.substring(0, 2))); // second parameter is the hour of the day that you want to set
-
-                            // ajouter le tache on list de Task pour afficher dans le recycler view
-                            list.add(new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date));
-                            collapsibleCalendar.addEventTag(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
-
-                            if ( ( date.get(Calendar.DAY_OF_MONTH) == datePicker.getDayOfMonth() )
-                                    && ( date.get(Calendar.MONTH) == datePicker.getMonth() )
-                                    && ( date.get(Calendar.YEAR) == datePicker.getYear() ) ){
-                                Task task=new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date);
-                                System.out.println(task);
-                                Templist.add(task);
-                            }
-
-
-                        }
-                        // show list of task in current day
-                        recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
-                        */
 
                         // Notify the listener that the request has completed
                         requestCompletedListener.onRequestCompleted();
