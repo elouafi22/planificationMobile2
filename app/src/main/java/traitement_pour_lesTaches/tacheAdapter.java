@@ -20,6 +20,7 @@ import com.example.planificationmobile2.R;
 import com.example.planificationmobile2.tacheActivity;
 import com.example.planificationmobile2.traitementPourProjet.popupprojet;
 import com.example.planificationmobile2.traitementPourProjet.projet;
+import com.example.planificationmobile2.user;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -92,16 +93,29 @@ public class tacheAdapter extends BaseAdapter {
             statusTache.setBackgroundColor(Color.RED);
         }
 
+        /**
+         * gerer l'evenement de clik sur la tache lui meme
+         */
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popuptache popuptache1 = new popuptache(context);
+                popuptache1.buils(tacheCourant.getNomTache(),tacheCourant.getNomEmp(),tacheCourant.getNomEmp(),tacheCourant.getNomTache(),tacheCourant.getDescription(),tacheCourant.dureeRestante());
+
+            }
+        });
 
         /**
          * gerer l'evenement de clik sur le boutant valider tache
          */
-
+        user usercourant =user.gestInstance();
+        if(usercourant.getVerifierchef()==1){
             validerTache.setOnClickListener(v -> {
                 FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                 RatingDialog.showRateAppDialogNormal(fragmentManager, context, tacheCourant.getIdtache());
-                System.out.println("-----------------------------------------rate tache-");
             });
+        }
+
 
         return view;
     }
