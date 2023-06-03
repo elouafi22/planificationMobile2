@@ -63,8 +63,8 @@ public class tacheActivity extends AppCompatActivity implements DataRecievedList
             String nomprojet =getIntent().getStringExtra("nomproj");
             nomproj.setText(nomprojet);
         }else{
-            projetRf projetcourant =projetRf.getInstance();
-            nomproj.setText(projetcourant.getNomProj());
+            //projetRf projetcourant =projetRf.getInstance();
+            nomproj.setText("Liste des Taches ");
         }
 
         ListView listetache =findViewById(R.id.tache);

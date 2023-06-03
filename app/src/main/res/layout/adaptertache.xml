@@ -70,7 +70,7 @@
 
                 <TextView
                     android:id="@+id/durerestanttache"
-                    android:layout_width="187dp"
+                    android:layout_width="243dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginTop="1dp"
