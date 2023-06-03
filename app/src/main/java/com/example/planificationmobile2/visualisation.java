@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class visualisation extends AppCompatActivity {
 
@@ -115,7 +116,7 @@ public class visualisation extends AppCompatActivity {
                 for (int i = 0; i < Mytache.length(); i++) {
                     JSONObject tache = Mytache.getJSONObject(i);
                     Toast.makeText(getApplicationContext(),tache.toString() , Toast.LENGTH_SHORT).show();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss z", Locale.US);
                     Date parsedDate = dateFormat.parse(tache.getString("DATE_CREATION"));
                     Calendar date = Calendar.getInstance();
                     date.setTime(parsedDate);
