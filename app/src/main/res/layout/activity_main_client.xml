@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:background="#007FAC"
             android:backgroundTint="#007FAC"
+            app:backgroundTint="#007FAC"
             android:layout_margin="10dp"
             android:text="Mon Planning" />
 
@@ -33,6 +34,7 @@
             android:layout_width="match_parent"
             android:background="#007FAC"
             android:backgroundTint="#007FAC"
+            app:backgroundTint="#007FAC"
             android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:text="Réclamation" />
