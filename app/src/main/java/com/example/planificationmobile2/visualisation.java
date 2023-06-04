@@ -58,6 +58,8 @@ public class visualisation extends AppCompatActivity {
 
     private FloatingActionButton fab;
 
+    MyAdabterRecycleTask myAdabterRecycleTask;
+
     JSONArray Mytache;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,8 @@ public class visualisation extends AppCompatActivity {
 
 
 
+        myAdabterRecycleTask = new MyAdabterRecycleTask(getApplicationContext(),Templist);
+
         // button + to create new task
         fab = findViewById(R.id.creetache);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +91,8 @@ public class visualisation extends AppCompatActivity {
         });
 
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(myAdabterRecycleTask);
         // make json object with value of form and send it to the server flask
 
          
@@ -133,12 +138,13 @@ public class visualisation extends AppCompatActivity {
                         Task task=new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date);
                         System.out.println(task);
                         Templist.add(task);
+                        myAdabterRecycleTask.notifyDataSetChanged();
                     }
 
 
                 }
                 // show list of task in current day
-                recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
+                //recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
 
             }
         };
@@ -236,15 +242,17 @@ public class visualisation extends AppCompatActivity {
                 for (int i = 0; i < list.size(); i++) {
                     Task tache = list.get(i);
                     Calendar date = tache.getDueDate();
-                    if( ( day.getDay() == date.get(Calendar.DAY_OF_MONTH) ) && ( day.getMonth() == date.get(Calendar.MONTH) ) && ( day.getYear() == date.get(Calendar.YEAR) ) )
+                    if( ( day.getDay() == date.get(Calendar.DAY_OF_MONTH) ) && ( day.getMonth() == date.get(Calendar.MONTH) ) && ( day.getYear() == date.get(Calendar.YEAR) ) ) {
                         Templist.add(new Task(tache.getTitle(), tache.getDescription(), date));
+                        myAdabterRecycleTask.notifyDataSetChanged();
+                    }
 
                 }
 
                 // show list of task in current day
                 System.out.println("---------------------------templist----------------------------------------");
 
-                recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
+                //recyclerView.setAdapter(new MyAdabterRecycleTask(getApplicationContext() ,Templist));
             }
 
 
