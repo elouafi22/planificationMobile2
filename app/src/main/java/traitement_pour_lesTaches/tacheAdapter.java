@@ -100,7 +100,7 @@ public class tacheAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 popuptache popuptache1 = new popuptache(context);
-                popuptache1.buils(tacheCourant.getNomTache(),tacheCourant.getNomEmp(),tacheCourant.getNomEmp(),tacheCourant.getNomTache(),tacheCourant.getDescription(),tacheCourant.dureeRestante());
+                popuptache1.buils(tacheCourant.getNomTache(),tacheCourant.getNomEmp(),tacheCourant.getNomEmp(),tacheCourant.getNomTache(),tacheCourant.getDescription(),tacheCourant.dureeRestante(),tacheCourant.getNomprojet(),tacheCourant.getIdtache());
 
             }
         });

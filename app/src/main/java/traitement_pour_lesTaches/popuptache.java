@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.planificationmobile2.R;
+import com.example.planificationmobile2.user;
 
 
 public class popuptache extends Dialog {
@@ -21,6 +22,10 @@ public class popuptache extends Dialog {
     private TextView nomemp;
     private TextView nomchef;
     private TextView Nomprojetques;
+    private TextView nomprojetvaleur;
+    private TextView nomdesmateriell;
+    private TextView valeurmat;
+
     private Button butonok;
 
     public popuptache(Context activity){
@@ -33,18 +38,19 @@ public class popuptache extends Dialog {
         this.chef=findViewById(R.id.valeurchefprojettache);
         this.nomprojet=findViewById(R.id.valeurnomprojettache);
 
-        this.nomdatefintache = findViewById(R.id.datefintachevaleur);
+        this.nomdatefintache = findViewById(R.id.datefintachepopus);
         this.nomemp=findViewById(R.id.personnetachequestion);
         this.nomchef=findViewById(R.id.nomcheftache);
         this.Nomprojetques=findViewById(R.id.nomprojetdetache);
-
-
+        this.nomprojetvaleur=findViewById(R.id.valeurnomprojettache);
+        this.nomdesmateriell=findViewById(R.id.nomdumateriel);
+        this.valeurmat=findViewById(R.id.listedemateriel);
 
 
 
     }
 
-    public void buils(String nomtache,String emp,String chef, String nomprojet, String descriptionprojet, String dateFin) {
+    public void buils(String nomtache,String emp,String chef, String nomprojet, String descriptionprojet, String dateFin,String nomprojet2,int idtache) {
         show();
         setNomtache(nomtache);
         setnomprojet(nomprojet);
@@ -54,10 +60,18 @@ public class popuptache extends Dialog {
         setEmp(emp);
         setChef(chef);
 
-        this.nomdatefintache.setText("Date fin tache :");
+
+        this.nomdatefintache.setText("Durée:");
         this.nomemp.setText("EMP :");
         this.nomchef.setText("Chef :");
         this.Nomprojetques.setText("Nom projet :");
+        this.nomprojetvaleur.setText(nomprojet2);
+        this.nomdesmateriell.setText("liste matérielle:");
+        user usercourant =user.gestInstance();
+
+        String resulata =recuperermaterielletache.recupermaterille(getContext(),usercourant.getNom(),usercourant.getPassword(),idtache);
+        this.valeurmat.setText(resulata);
+        System.out.println("------------------------------------------------"+nomprojet2);
 
     }
 
