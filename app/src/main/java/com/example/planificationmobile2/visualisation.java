@@ -43,6 +43,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -127,7 +128,7 @@ public class visualisation extends AppCompatActivity {
                     date.setTime(parsedDate);
 
                     // ajouter le tache on list de Task pour afficher dans le recycler view
-                    list.add(new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date));
+                    list.add(new Task(tache.getString("NOMT"), tache.getString("DECRIPTION") , date));
                     collapsibleCalendar.addEventTag(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH), Color.parseColor("#FF4081"));
 
 
@@ -138,6 +139,9 @@ public class visualisation extends AppCompatActivity {
                         Task task=new Task(tache.getString("NOMT"), tache.getString("DECRIPTION"), date);
                         System.out.println(task);
                         Templist.add(task);
+                        // sort with dueDate of Task using getDueDate
+                        Collections.sort(Templist);
+
                         myAdabterRecycleTask.notifyDataSetChanged();
                     }
 
@@ -244,6 +248,7 @@ public class visualisation extends AppCompatActivity {
                     Calendar date = tache.getDueDate();
                     if( ( day.getDay() == date.get(Calendar.DAY_OF_MONTH) ) && ( day.getMonth() == date.get(Calendar.MONTH) ) && ( day.getYear() == date.get(Calendar.YEAR) ) ) {
                         Templist.add(new Task(tache.getTitle(), tache.getDescription(), date));
+                        Collections.sort(Templist);
                         myAdabterRecycleTask.notifyDataSetChanged();
                     }
 

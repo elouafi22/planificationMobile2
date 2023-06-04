@@ -44,7 +44,9 @@ public class MyAdabterRecycleTask extends RecyclerView.Adapter<MyRecycleView> {
         holder.taskName.setText(list.get(position).getTitle());
         holder.taskDescription.setText(list.get(position).getDescription());
         // get HH:mm
-        holder.taskDate.setText(list.get(position).getDueDate().get(Calendar.HOUR_OF_DAY) + ":" + list.get(position).getDueDate().get(Calendar.MINUTE));
+        holder.taskDate.setText(list.get(position).getDueDate().get(Calendar.HOUR_OF_DAY) + ":" +
+                list.get(position).getDueDate().get(Calendar.MINUTE) + ":"
+                + list.get(position).getDueDate().get(Calendar.SECOND));
 
     }
 

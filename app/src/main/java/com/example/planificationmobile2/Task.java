@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Task {
+public class Task implements Comparable<Task> {
     static private int  id;
     private String title;
     private String description;
@@ -55,4 +55,8 @@ public class Task {
         return this.getTitle() + "::" + this.getDescription() + "::" + formattedDate;
     }
 
+    @Override
+    public int compareTo(Task task) {
+        return this.getDueDate().compareTo(task.getDueDate());
+    }
 }
