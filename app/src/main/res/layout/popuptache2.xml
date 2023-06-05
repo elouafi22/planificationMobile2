@@ -67,7 +67,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/datefintachepopus"
@@ -81,15 +82,10 @@
 
                     <TextView
                         android:id="@+id/datefintachevaleur"
-                        android:layout_width="109dp"
+                        android:layout_toEndOf="@+id/datefintachepopus"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="160dp"
-                        android:layout_marginTop="20dp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="5dp"
+                        android:layout_marginLeft="70dp"
                         android:radius="10dp"
                         android:text="date"
                         android:textColor="@android:color/black"
@@ -99,7 +95,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -113,15 +110,10 @@
 
                     <TextView
                         android:id="@+id/lespersonnetachevaleur"
-                        android:layout_width="137dp"
+                        android:layout_toEndOf="@+id/personnetachequestion"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="160dp"
-                        android:layout_marginTop="20dp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="5dp"
+                        android:layout_marginLeft="100dp"
                         android:radius="10dp"
                         android:text=""
                         android:textColor="@android:color/black"
@@ -134,7 +126,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -148,15 +141,10 @@
 
                     <TextView
                         android:id="@+id/valeurchefprojettache"
-                        android:layout_width="137dp"
+                        android:layout_toEndOf="@+id/nomcheftache"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="160dp"
-                        android:layout_marginTop="20dp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="5dp"
+                        android:layout_marginLeft="100dp"
                         android:radius="10dp"
                         android:text=""
                         android:textColor="@android:color/black"
@@ -167,7 +155,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/nomprojetdetache"
@@ -181,15 +170,10 @@
 
                     <TextView
                         android:id="@+id/valeurnomprojettache"
-                        android:layout_width="117dp"
-                        android:layout_height="54dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:layout_marginLeft="160dp"
-                        android:layout_marginTop="20dp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="5dp"
+                        android:layout_marginLeft="60dp"
                         android:radius="10dp"
                         android:text=""
                         android:textColor="@android:color/black"
@@ -201,7 +185,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/nomdumateriel"
@@ -215,17 +200,12 @@
 
                     <TextView
                         android:id="@+id/listedemateriel"
-                        android:layout_width="117dp"
-                        android:layout_height="54dp"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="160dp"
-                        android:layout_marginTop="20dp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
                         android:radius="10dp"
                         android:text=""
+
                         android:textColor="@android:color/black"
                         android:textSize="12sp" />
 
