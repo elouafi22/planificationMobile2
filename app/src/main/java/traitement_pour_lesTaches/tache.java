@@ -18,8 +18,9 @@ public class tache {
     private String nomEmp;
     private String nomTache;
     private String nomprojet;
+    private String nomchef;
 
-    public  tache(String nomTache,int idtache,LocalDateTime date_creation,LocalDateTime date_fin,LocalDateTime duree_estimee,String etat,String description,int score,int idprojet,String nomEmp,String nomprojet){
+    public  tache(String nomTache,int idtache,LocalDateTime date_creation,LocalDateTime date_fin,LocalDateTime duree_estimee,String etat,String description,int score,int idprojet,String nomEmp,String nomprojet,String nomchef){
         this.idtache=idtache;
         this.date_creation=date_creation;
         this.date_fin=date_fin;
@@ -31,6 +32,7 @@ public class tache {
         this.nomEmp=nomEmp;
         this.nomTache=nomTache;
         this.nomprojet=nomprojet;
+        this.nomchef=nomchef;
     }
 
 
@@ -78,6 +80,8 @@ public class tache {
     public String getNomprojet(){
         return this.nomprojet;
     }
+
+    public String getNomchef(){return this.nomchef;}
 
     /**
      * methode permet de recuperer la duree restant sur la fin d'un projet

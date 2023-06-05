@@ -84,9 +84,10 @@ public class afficherTache {
 
                             String nomtache=obj.getString("nomtache");
                             String nomproj =obj.getString("nomproj");
+                            String chef=obj.getString("chef");
                             projetcourant.setNomProj(nomproj);
                             System.out.println("----------------------------------------------------"+nomtache);
-                            ensembleTache.add(new tache(nomtache,obj.getInt("IDTACHE"),LocalDateTime.parse(obj.getString("DATE_CREATION"),formatter),datefin,LocalDateTime.parse(obj.getString("DUREE_ESTIMEE"),formatter),obj.getString("ETATT"),obj.getString("DECRIPTION"),score,obj.getInt("IDPROJ"),obj.getString("NOMEMP"),nomproj));
+                            ensembleTache.add(new tache(nomtache,obj.getInt("IDTACHE"),LocalDateTime.parse(obj.getString("DATE_CREATION"),formatter),datefin,LocalDateTime.parse(obj.getString("DUREE_ESTIMEE"),formatter),obj.getString("ETATT"),obj.getString("DECRIPTION"),score,obj.getInt("IDPROJ"),obj.getString("NOMEMP"),nomproj,chef));
 
                         }
                     }catch (JSONException e){
