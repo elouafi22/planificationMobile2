@@ -51,6 +51,9 @@ public class MainActivityClient extends AppCompatActivity {
     private void envouyerEmail(){
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("message/rfc822");
+        user usercourant =user.gestInstance();
+        String email =usercourant.getNom()+"@entreprise.com";
+        intent.putExtra(Intent.EXTRA_EMAIL,email);
         startActivity(Intent.createChooser(intent,"choisir une boite email"));
 
     }
